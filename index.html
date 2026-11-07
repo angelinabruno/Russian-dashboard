@@ -1,0 +1,1309 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Тетрадь: Russian study</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=Neucha&display=swap">
+<style>
+/* Layout: a Russian school exercise book. Squared paper, red margin rule, ink-blue writing; dark mode is the classroom blackboard. */
+:root{
+  --paper:#f6f8f6; --grid:rgba(60,100,170,.11); --card:#ffffff; --line:#d8dde6;
+  --ink:#1c2f6b; --ink-soft:#56628a; --pencil:#626674;
+  --margin:#c93a4b; --margin-soft:rgba(201,58,75,.10);
+  --good:#2b7a4b; --good-soft:rgba(43,122,75,.12); --bad:#b5303d; --bad-soft:rgba(181,48,61,.10);
+  --hi:#fff3b8;
+  --f-display:"PT Serif", Georgia, "Times New Roman", serif;
+  --f-body:"Golos Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-hand:"Neucha", "Comic Sans MS", cursive;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#1b2522; --grid:rgba(225,240,230,.045); --card:#222e2a; --line:#33423d;
+  --ink:#eaf0ea; --ink-soft:#a8b8b0; --pencil:#93a39b;
+  --margin:#ec7d88; --margin-soft:rgba(236,125,136,.12);
+  --good:#86d3a1; --good-soft:rgba(134,211,161,.13); --bad:#f2919a; --bad-soft:rgba(242,145,154,.12);
+  --hi:rgba(255,236,150,.16); color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#1b2522; --grid:rgba(225,240,230,.045); --card:#222e2a; --line:#33423d;
+  --ink:#eaf0ea; --ink-soft:#a8b8b0; --pencil:#93a39b;
+  --margin:#ec7d88; --margin-soft:rgba(236,125,136,.12);
+  --good:#86d3a1; --good-soft:rgba(134,211,161,.13); --bad:#f2919a; --bad-soft:rgba(242,145,154,.12);
+  --hi:rgba(255,236,150,.16); color-scheme:dark }
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  background-color:var(--paper);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:22px 22px;
+  color:var(--ink); font-family:var(--f-body); font-size:16px; line-height:1.55;
+}
+.wrap{max-width:1000px;margin:0 auto;padding-block:20px 56px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));position:relative}
+@media (min-width:820px){
+  .wrap{padding-left:max(64px, env(safe-area-inset-left, 0px))}
+  .wrap::before{content:"";position:absolute;top:0;bottom:0;left:40px;width:2px;background:var(--margin);opacity:.55}
+}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.2;font-weight:700}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--margin);outline-offset:2px;border-radius:6px}
+.hand{font-family:var(--f-hand)}
+.eyebrow{font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--pencil);font-weight:600}
+.muted{color:var(--pencil)}
+.tabnum{font-variant-numeric:tabular-nums}
+
+/* header */
+.top{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:flex-end;justify-content:space-between;padding-bottom:16px;border-bottom:2px solid var(--ink);margin-bottom:6px}
+.title-block{min-width:0}
+.title-block h1{font-size:clamp(28px,5vw,40px);letter-spacing:-.01em}
+.title-block .sub{color:var(--ink-soft);margin-top:4px;font-size:15px}
+.lessons{display:flex;gap:6px;flex-wrap:wrap}
+.lesson{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:5px 12px;font-size:14px;color:var(--pencil)}
+.lesson[aria-current="true"]{border-color:var(--ink);color:var(--ink);font-weight:600}
+.lesson:disabled{cursor:default;opacity:.75}
+.lesson small{font-size:11px;margin-left:4px}
+
+nav.tabs{display:flex;gap:4px;margin:0 0 24px;overflow-x:auto;scrollbar-width:none}
+nav.tabs a{flex:0 0 auto;text-decoration:none;color:var(--ink-soft);padding:10px 16px 9px;border-bottom:3px solid transparent;font-weight:500;display:flex;gap:8px;align-items:baseline}
+nav.tabs a span.ru{font-family:var(--f-display);font-size:17px}
+nav.tabs a span.en{font-size:12px;color:var(--pencil)}
+nav.tabs a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--margin)}
+nav.tabs a:hover{color:var(--ink)}
+@media (max-width:560px){nav.tabs a span.en{display:none} nav.tabs a{padding:10px 10px 9px}}
+
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r)}
+.section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:28px 0 12px;flex-wrap:wrap}
+.section-h h2{font-size:22px}
+.btn{border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:8px;padding:9px 16px;font-weight:600;font-size:15px}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.small{padding:6px 12px;font-size:14px}
+.btn{white-space:nowrap}
+.btn:hover{filter:brightness(1.1)}
+
+/* home */
+.next{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:640px){.next{grid-template-columns:1fr}}
+.next .panel{padding:18px 20px;display:flex;flex-direction:column;gap:8px}
+.next .panel h3{font-size:20px}
+.next .panel p{margin:0;color:var(--ink-soft);font-size:15px}
+.next .panel .btn{align-self:flex-start;margin-top:6px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+@media (max-width:640px){.stats{grid-template-columns:1fr}}
+.stat{padding:14px 18px}
+.stat .v{font-family:var(--f-display);font-size:30px;font-weight:700;line-height:1.1}
+.stat .l{font-size:13px;color:var(--pencil)}
+.days{display:flex;gap:4px;margin-top:8px}
+.days i{flex:1;height:14px;border-radius:3px;background:var(--line)}
+.days i.on{background:var(--margin)}
+.progress-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:760px){.progress-cols{grid-template-columns:1fr}}
+.plist{padding:6px 0}
+.prow{display:grid;grid-template-columns:minmax(0,1fr) 110px 52px;gap:12px;align-items:center;padding:9px 18px;border:0;background:none;width:100%;text-align:left}
+.prow + .prow{border-top:1px solid var(--line)}
+.prow:hover{background:var(--margin-soft)}
+.prow .n{min-width:0}
+.prow .n b{font-weight:500;display:block;font-size:15px}
+.prow .n small{color:var(--pencil);font-size:12.5px}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar > span{display:block;height:100%;background:var(--ink);border-radius:3px}
+.bar.good > span{background:var(--good)}
+.prow .pct{text-align:right;font-variant-numeric:tabular-nums;font-size:14px;color:var(--ink-soft)}
+.plist-h{padding:14px 18px 6px;display:flex;justify-content:space-between;align-items:baseline}
+.plist-h h3{font-size:18px}
+
+/* flashcards */
+.deckbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.chip{border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:6px 12px;font-size:14px;color:var(--ink-soft)}
+.chip[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.chip .c{opacity:.7;margin-left:4px;font-variant-numeric:tabular-nums}
+.cardtools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:12px}
+.toggle{display:inline-flex;border:1.5px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card)}
+.toggle button{border:0;background:none;padding:6px 12px;font-size:14px;color:var(--ink-soft)}
+.toggle button[aria-pressed="true"]{background:var(--margin-soft);color:var(--ink);font-weight:600}
+.flash{perspective:1400px;max-width:620px;margin:0 auto}
+.flash-inner{position:relative;min-height:280px;transition:transform .45s cubic-bezier(.3,.7,.3,1);transform-style:preserve-3d;cursor:pointer}
+.flash.flipped .flash-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--card);border:1px solid var(--line);border-radius:14px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px 24px;gap:10px;
+  background-image:linear-gradient(90deg,transparent 30px,var(--margin-soft) 30px,var(--margin-soft) 32px,transparent 32px)}
+.face.back{transform:rotateY(180deg)}
+.face .word{font-family:var(--f-display);font-size:clamp(26px,6vw,40px);line-height:1.2;overflow-wrap:anywhere}
+.face .en-word{font-size:clamp(22px,5vw,30px);font-weight:600}
+.face .note{color:var(--ink-soft);font-size:15px;max-width:44ch}
+.face .hint{position:absolute;bottom:12px;font-size:12px;color:var(--pencil)}
+.face .known-tag{position:absolute;top:12px;right:16px;font-family:var(--f-hand);color:var(--good);font-size:18px}
+.flash-actions{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.flash-actions .btn{min-width:140px}
+.btn.again{background:transparent;color:var(--bad);border-color:var(--bad)}
+.btn.know{background:var(--good);border-color:var(--good);color:var(--paper)}
+.counter{text-align:center;color:var(--pencil);font-size:14px;margin-top:10px}
+.empty{text-align:center;padding:40px 20px;color:var(--ink-soft)}
+.empty .hand{font-size:28px;color:var(--margin);display:block;margin-bottom:6px}
+.kbd{font-size:12px;color:var(--pencil);text-align:center;margin-top:6px}
+@media (hover:none){.kbd{display:none}}
+
+/* grammar */
+.gram{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:760px){.gram{grid-template-columns:1fr}}
+details.g{background:var(--card);border:1px solid var(--line);border-radius:var(--r);min-width:0}
+details.g[open]{grid-column:1/-1}
+details.g summary{list-style:none;padding:14px 18px;cursor:pointer;display:flex;gap:12px;align-items:baseline}
+details.g summary::-webkit-details-marker{display:none}
+details.g summary .no{font-family:var(--f-hand);color:var(--margin);font-size:22px;min-width:22px}
+details.g summary h3{font-size:18px;flex:1}
+details.g summary .pg{font-size:12px;color:var(--pencil);white-space:nowrap}
+details.g summary::after{content:"+";font-size:20px;color:var(--pencil);line-height:1}
+details.g[open] summary::after{content:"–"}
+.gbody{padding:0 18px 18px 52px;display:flex;flex-direction:column;gap:12px}
+@media (max-width:520px){.gbody{padding-left:18px}}
+.gbody p{margin:0;max-width:68ch}
+.gbody .ex{font-family:var(--f-display);font-size:16.5px}
+.tbl{overflow-x:auto}
+.tbl table{border-collapse:collapse;font-size:15px;min-width:100%}
+.tbl th,.tbl td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.tbl th{background:var(--margin-soft);font-weight:600;font-size:13px}
+.tbl td{font-family:var(--f-display)}
+.tbl td.lbl{font-family:var(--f-body);font-size:13px;color:var(--ink-soft)}
+mark{background:var(--hi);color:inherit;padding:0 1px;border-radius:2px}
+.end{color:var(--margin);font-weight:700}
+.note-box{border-left:3px solid var(--margin);padding:6px 12px;background:var(--margin-soft);border-radius:0 6px 6px 0;font-size:15px}
+
+/* quizzes */
+.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.qcard{padding:16px 18px;display:flex;flex-direction:column;gap:6px;text-align:left;border:1px solid var(--line);background:var(--card);border-radius:var(--r)}
+.qcard:hover{border-color:var(--ink)}
+.qcard .ru{font-family:var(--f-display);font-size:20px;font-weight:700}
+.qcard .en{font-size:13px;color:var(--pencil);margin-top:-4px}
+.qcard p{margin:4px 0 0;font-size:14px;color:var(--ink-soft);flex:1}
+.qcard .best{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--pencil);margin-top:6px;gap:8px}
+.mark{font-family:var(--f-hand);color:var(--margin);font-size:22px;line-height:1}
+.qcard.test{border:1.5px solid var(--margin)}
+.quiz{max-width:680px;margin:0 auto}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px}
+.qprog{display:flex;gap:4px;margin-bottom:18px}
+.qprog i{flex:1;height:5px;border-radius:3px;background:var(--line)}
+.qprog i.ok{background:var(--good)}
+.qprog i.no{background:var(--bad)}
+.qprog i.cur{background:var(--ink)}
+.qbox{padding:24px 22px}
+.qbox .prompt-k{font-size:13px;color:var(--pencil);margin-bottom:8px}
+.qbox .prompt{font-family:var(--f-display);font-size:clamp(21px,4.4vw,27px);line-height:1.35;overflow-wrap:anywhere}
+.qbox .prompt .blank{display:inline-block;min-width:3.5em;border-bottom:2px solid var(--margin);text-align:center}
+.qbox .prompt-en{color:var(--ink-soft);margin-top:6px;font-size:15px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}
+@media (max-width:520px){.opts{grid-template-columns:1fr}}
+.opt{border:1.5px solid var(--line);background:var(--paper);border-radius:8px;padding:12px 14px;text-align:left;font-family:var(--f-display);font-size:18px;display:flex;gap:10px;align-items:baseline}
+.opt .k{font-family:var(--f-body);font-size:12px;color:var(--pencil);min-width:12px}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt:disabled{cursor:default}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.built{font-family:var(--f-display);font-size:clamp(20px,4.2vw,25px);margin-top:14px;padding:10px 14px;background:var(--paper);border:1px dashed var(--line);border-radius:8px;overflow-wrap:anywhere}
+.slot{display:inline-block;min-width:3.5em;border-bottom:2px solid var(--margin);text-align:center;padding:0 2px}
+.slot.good{color:var(--good);border-color:var(--good)} .slot.bad{color:var(--bad);border-color:var(--bad);text-decoration:line-through}
+.two-row{margin-top:16px;display:flex;flex-direction:column;gap:8px}
+.two-opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt.two{flex:1 1 130px;justify-content:center;padding:10px 12px}
+.opt.sel{border-color:var(--ink);background:var(--margin-soft);font-weight:700}
+.btn:disabled{opacity:.4;cursor:default;filter:none}
+.feedback{margin-top:16px;padding:12px 14px;border-radius:8px;font-size:15px}
+.feedback.ok{background:var(--good-soft)}
+.feedback.no{background:var(--bad-soft)}
+.feedback b.h{font-family:var(--f-hand);font-size:20px;font-weight:400;margin-right:6px}
+.feedback.ok b.h{color:var(--good)} .feedback.no b.h{color:var(--bad)}
+.qnext{display:flex;justify-content:flex-end;margin-top:16px}
+.result{text-align:center;padding:30px 22px}
+.result .grade{font-family:var(--f-hand);color:var(--margin);font-size:84px;line-height:1;transform:rotate(-6deg);display:inline-block}
+.result .gword{font-family:var(--f-hand);color:var(--margin);font-size:26px}
+.result .score{font-family:var(--f-display);font-size:22px;margin-top:10px}
+.review{text-align:left;margin-top:22px;border-top:1px solid var(--line);padding-top:14px;display:flex;flex-direction:column;gap:8px}
+.review div{font-size:15px}
+.review .r-q{font-family:var(--f-display)}
+.review .r-a{color:var(--good);font-weight:600}
+.result .actions{display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+
+footer{margin-top:44px;padding-top:14px;border-top:1px solid var(--line);font-size:13px;color:var(--pencil);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media (prefers-reduced-motion:reduce){.flash-inner{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div class="title-block">
+      <div class="eyebrow" id="ch-eyebrow">Голоса · Book One</div>
+      <h1 id="ch-title">Урок</h1>
+      <div class="sub" id="ch-sub"></div>
+    </div>
+    <div class="lessons" aria-label="Chapters">
+      <button class="lesson" data-act="chapter" data-ch="2">Урок 2</button>
+      <button class="lesson" data-act="chapter" data-ch="3">Урок 3</button>
+      <button class="lesson" data-act="chapter" data-ch="4">Урок 4</button>
+    </div>
+  </header>
+  <nav class="tabs" aria-label="Sections">
+    <a href="#home" data-route="home"><span class="ru">Главная</span><span class="en">Home</span></a>
+    <a href="#cards" data-route="cards"><span class="ru">Слова</span><span class="en">Flashcards</span></a>
+    <a href="#grammar" data-route="grammar"><span class="ru">Грамматика</span><span class="en">Grammar</span></a>
+    <a href="#tests" data-route="tests"><span class="ru">Тесты</span><span class="en">Quizzes</span></a>
+  </nav>
+  <main id="view"></main>
+  <footer>
+    <span id="sync">Progress is saved in this browser.</span>
+    <span>Stress marks follow the textbook. Grades use the Russian 5-point scale.</span>
+  </footer>
+</div>
+
+<script>
+const PREP_XLSX = {"s":["Masculine · consonant ending  (160)","Masculine · ending in -й / -ь  (70)","Masculine · ending in -ий  (25)","Masculine · special -у after в / на  (70)","Same nouns after о (about)  (20)","Neuter · ending in -о  (70)","Neuter · ending in -е  (25)","Neuter · ending in -ие  (50)","Feminine · ending in -а  (160)","Feminine · ending in -я  (45)","Feminine · ending in -ия  (50)","Feminine · ending in -ь  (55)","Plural · all genders  (120)","Possessives & этот / тот  (40)","Exceptions · learn individually  (40)"],"e":[["новый дом","в новом доме","in the new house",0],["старый город","в старом городе","in the old city",0],["зелёный парк","в зелёном парке","in the green park",0],["уютный театр","в уютном театре","at the cosy theatre",0],["ближайший магазин","в ближайшем магазине","in the nearest shop",0],["дорогой ресторан","в дорогом ресторане","in the expensive restaurant",0],["центральный банк","в центральном банке","at the central bank",0],["известный офис","в известном офисе","in the famous office",0],["новый институт","в новом институте","at the new institute",0],["шумный клуб","в шумном клубе","at the noisy club",0],["местный кинотеатр","в местном кинотеатре","at the local cinema",0],["известный стадион","на известном стадионе","at the famous stadium",0],["новый вокзал","на новом вокзале","at the new station",0],["маленький завод","на маленьком заводе","at the small factory",0],["известный район","в известном районе","in the famous district",0],["чёрный стол","на чёрном столе","on the black table",0],["широкий диван","на широком диване","on the wide sofa",0],["тёмный балкон","на тёмном балконе","on the dark balcony",0],["чистый коридор","в чистом коридоре","in the clean corridor",0],["жёлтый автобус","в жёлтом автобусе","on the yellow bus",0],["новый поезд","в новом поезде","on the new train",0],["маленький самолёт","в маленьком самолёте","on the small plane",0],["вечерний концерт","на вечернем концерте","at the evening concert",0],["летний урок","на летнем уроке","in the summer lesson",0],["трудный экзамен","на трудном экзамене","at the difficult exam",0],["интересный фильм","об интересном фильме","about the interesting film",0],["важный журнал","в важном журнале","in the important magazine",0],["смешной проект","о смешном проекте","about the funny project",0],["последний вопрос","о последнем вопросе","about the last question",0],["лучший брат","о лучшем брате","about the best brother",0],["молодой друг","о молодом друге","about the young friend",0],["умный сосед","об умном соседе","about the clever neighbour",0],["хороший врач","о хорошем враче","about the good doctor",0],["младший студент","о младшем студенте","about the younger student",0],["модный костюм","в модном костюме","in the fashionable suit",0],["новый свитер","в новом свитере","in the new sweater",0],["старый дом","в старом доме","in the old house",0],["современный город","в современном городе","in the modern city",0],["центральный парк","в центральном парке","in the central park",0],["тихий театр","в тихом театре","at the quiet theatre",0],["соседний магазин","в соседнем магазине","in the neighbouring shop",0],["новый ресторан","в новом ресторане","in the new restaurant",0],["местный банк","в местном банке","at the local bank",0],["ближайший офис","в ближайшем офисе","in the nearest office",0],["старый институт","в старом институте","at the old institute",0],["ближайший клуб","в ближайшем клубе","at the nearest club",0],["дорогой кинотеатр","в дорогом кинотеатре","at the expensive cinema",0],["ближайший стадион","на ближайшем стадионе","at the nearest stadium",0],["старый вокзал","на старом вокзале","at the old station",0],["современный завод","на современном заводе","at the modern factory",0],["чистый район","в чистом районе","in the clean district",0],["деревянный стол","на деревянном столе","on the wooden table",0],["любимый диван","на любимом диване","on the favourite sofa",0],["тёплый балкон","на тёплом балконе","on the warm balcony",0],["уютный коридор","в уютном коридоре","in the cosy corridor",0],["пустой автобус","в пустом автобусе","on the empty bus",0],["старый поезд","в старом поезде","on the old train",0],["синий самолёт","в синем самолёте","on the blue plane",0],["утренний концерт","на утреннем концерте","at the morning concert",0],["зимний урок","на зимнем уроке","in the winter lesson",0],["лёгкий экзамен","на лёгком экзамене","at the easy exam",0],["новый фильм","о новом фильме","about the new film",0],["трудный журнал","в трудном журнале","in the difficult magazine",0],["скучный проект","о скучном проекте","about the boring project",0],["любимый вопрос","о любимом вопросе","about the favourite question",0],["близкий брат","о близком брате","about the close brother",0],["старый друг","о старом друге","about the old friend",0],["весёлый сосед","о весёлом соседе","about the cheerful neighbour",0],["любимый врач","о любимом враче","about the favourite doctor",0],["известный студент","об известном студенте","about the famous student",0],["дорогой костюм","в дорогом костюме","in the expensive suit",0],["старый свитер","в старом свитере","in the old sweater",0],["большой дом","в большом доме","in the big house",0],["тихий город","в тихом городе","in the quiet city",0],["городской парк","в городском парке","in the city park",0],["шумный театр","в шумном театре","at the noisy theatre",0],["местный магазин","в местном магазине","in the local shop",0],["старый ресторан","в старом ресторане","in the old restaurant",0],["огромный банк","в огромном банке","at the huge bank",0],["шумный офис","в шумном офисе","in the noisy office",0],["большой институт","в большом институте","at the big institute",0],["соседний клуб","в соседнем клубе","at the neighbouring club",0],["новый кинотеатр","в новом кинотеатре","at the new cinema",0],["шумный стадион","на шумном стадионе","at the noisy stadium",0],["большой вокзал","на большом вокзале","at the big station",0],["главный завод","на главном заводе","at the main factory",0],["огромный район","в огромном районе","in the huge district",0],["чистый стол","на чистом столе","on the clean table",0],["новый диван","на новом диване","on the new sofa",0],["холодный балкон","на холодном балконе","on the cold balcony",0],["новый коридор","в новом коридоре","in the new corridor",0],["быстрый автобус","в быстром автобусе","on the fast bus",0],["большой поезд","в большом поезде","on the big train",0],["красный самолёт","в красном самолёте","on the red plane",0],["школьный концерт","на школьном концерте","at the school concert",0],["новогодний урок","на новогоднем уроке","in the New Year lesson",0],["последний экзамен","на последнем экзамене","at the last exam",0],["старый фильм","о старом фильме","about the old film",0],["серьёзный журнал","в серьёзном журнале","in the serious magazine",0],["известный проект","об известном проекте","about the famous project",0],["главный вопрос","о главном вопросе","about the main question",0],["талантливый брат","о талантливом брате","about the talented brother",0],["добрый друг","о добром друге","about the kind friend",0],["строгий сосед","о строгом соседе","about the strict neighbour",0],["старший врач","о старшем враче","about the older doctor",0],["новый студент","о новом студенте","about the new student",0],["красивый костюм","в красивом костюме","in the beautiful suit",0],["тёплый свитер","в тёплом свитере","in the warm sweater",0],["маленький дом","в маленьком доме","in the small house",0],["шумный город","в шумном городе","in the noisy city",0],["ближайший парк","в ближайшем парке","in the nearest park",0],["ближайший театр","в ближайшем театре","at the nearest theatre",0],["дорогой магазин","в дорогом магазине","in the expensive shop",0],["большой ресторан","в большом ресторане","in the big restaurant",0],["известный банк","в известном банке","at the famous bank",0],["новый офис","в новом офисе","in the new office",0],["маленький институт","в маленьком институте","at the small institute",0],["местный клуб","в местном клубе","at the local club",0],["старый кинотеатр","в старом кинотеатре","at the old cinema",0],["новый стадион","на новом стадионе","at the new stadium",0],["маленький вокзал","на маленьком вокзале","at the small station",0],["центральный завод","на центральном заводе","at the central factory",0],["южный район","в южном районе","in the southern district",0],["грязный стол","на грязном столе","on the dirty table",0],["старый диван","на старом диване","on the old sofa",0],["чистый балкон","на чистом балконе","on the clean balcony",0],["старый коридор","в старом коридоре","in the old corridor",0],["новый автобус","в новом автобусе","on the new bus",0],["маленький поезд","в маленьком поезде","on the small train",0],["белый самолёт","в белом самолёте","on the white plane",0],["летний концерт","на летнем концерте","at the summer concert",0],["интересный урок","на интересном уроке","in the interesting lesson",0],["первый экзамен","на первом экзамене","at the first exam",0],["важный фильм","о важном фильме","about the important film",0],["смешной журнал","в смешном журнале","in the funny magazine",0],["последний проект","о последнем проекте","about the last project",0],["странный вопрос","о странном вопросе","about the strange question",0],["молодой брат","о молодом брате","about the young brother",0],["умный друг","об умном друге","about the clever friend",0],["хороший сосед","о хорошем соседе","about the good neighbour",0],["младший врач","о младшем враче","about the younger doctor",0],["лучший студент","о лучшем студенте","about the best student",0],["новый костюм","в новом костюме","in the new suit",0],["красный свитер","в красном свитере","in the red sweater",0],["красивый дом","в красивом доме","in the beautiful house",0],["далёкий город","в далёком городе","in the distant city",0],["соседний парк","в соседнем парке","in the neighbouring park",0],["соседний театр","в соседнем театре","at the neighbouring theatre",0],["новый магазин","в новом магазине","in the new shop",0],["маленький ресторан","в маленьком ресторане","in the small restaurant",0],["ближайший банк","в ближайшем банке","at the nearest bank",0],["старый офис","в старом офисе","in the old office",0],["современный институт","в современном институте","at the modern institute",0],["дорогой клуб","в дорогом клубе","at the expensive club",0],["большой кинотеатр","в большом кинотеатре","at the big cinema",0],["старый стадион","на старом стадионе","at the old stadium",0],["современный вокзал","на современном вокзале","at the modern station",0],["местный завод","на местном заводе","at the local factory",0],["северный район","в северном районе","in the northern district",0],["широкий стол","на широком столе","on the wide table",0],["новый музей","в новом музее","at the new museum",1],["маленький трамвай","в маленьком трамвае","on the small tram",1],["английский словарь","в английском словаре","in the English dictionary",1],["младший учитель","о младшем учителе","about the younger teacher",1],["лучший писатель","о лучшем писателе","about the best writer",1],["дорогой отель","в дорогом отеле","at the expensive hotel",1],["умный гость","об умном госте","about the clever guest",1],["старый портфель","в старом портфеле","in the old briefcase",1],["новый корабль","на новом корабле","on the new ship",1],["важный спектакль","на важном спектакле","at the important play",1],["вечерний фестиваль","на вечернем фестивале","at the evening festival",1],["жёлтый автомобиль","в жёлтом автомобиле","in the yellow car",1],["летний лагерь","в летнем лагере","at the summer camp",1],["свежий чай","о свежем чае","about the fresh tea",1],["известный край","об известном крае","about the famous region",1],["старый музей","в старом музее","at the old museum",1],["синий трамвай","в синем трамвае","on the blue tram",1],["хороший словарь","в хорошем словаре","in the good dictionary",1],["известный учитель","об известном учителе","about the famous teacher",1],["близкий писатель","о близком писателе","about the close writer",1],["новый отель","в новом отеле","at the new hotel",1],["весёлый гость","о весёлом госте","about the cheerful guest",1],["большой портфель","в большом портфеле","in the big briefcase",1],["старый корабль","на старом корабле","on the old ship",1],["скучный спектакль","на скучном спектакле","at the boring play",1],["утренний фестиваль","на утреннем фестивале","at the morning festival",1],["пустой автомобиль","в пустом автомобиле","in the empty car",1],["зимний лагерь","в зимнем лагере","at the winter camp",1],["крепкий чай","о крепком чае","about the strong tea",1],["чистый край","о чистом крае","about the clean region",1],["большой музей","в большом музее","at the big museum",1],["красный трамвай","в красном трамвае","on the red tram",1],["любимый словарь","в любимом словаре","in the favourite dictionary",1],["новый учитель","о новом учителе","about the new teacher",1],["талантливый писатель","о талантливом писателе","about the talented writer",1],["старый отель","в старом отеле","at the old hotel",1],["строгий гость","о строгом госте","about the strict guest",1],["маленький портфель","в маленьком портфеле","in the small briefcase",1],["большой корабль","на большом корабле","on the big ship",1],["большой спектакль","на большом спектакле","at the big play",1],["школьный фестиваль","на школьном фестивале","at the school festival",1],["быстрый автомобиль","в быстром автомобиле","in the fast car",1],["детский лагерь","в детском лагере","at the children's camp",1],["горячий чай","о горячем чае","about the hot tea",1],["огромный край","об огромном крае","about the huge region",1],["маленький музей","в маленьком музее","at the small museum",1],["белый трамвай","в белом трамвае","on the white tram",1],["школьный словарь","в школьном словаре","in the school dictionary",1],["лучший учитель","о лучшем учителе","about the best teacher",1],["молодой писатель","о молодом писателе","about the young writer",1],["большой отель","в большом отеле","at the big hotel",1],["хороший гость","о хорошем госте","about the good guest",1],["чёрный портфель","в чёрном портфеле","in the black briefcase",1],["маленький корабль","на маленьком корабле","on the small ship",1],["вечерний спектакль","на вечернем спектакле","at the evening play",1],["летний фестиваль","на летнем фестивале","at the summer festival",1],["новый автомобиль","в новом автомобиле","in the new car",1],["спортивный лагерь","в спортивном лагере","at the sports camp",1],["зелёный чай","о зелёном чае","about the green tea",1],["южный край","о южном крае","about the southern region",1],["красивый музей","в красивом музее","at the beautiful museum",1],["последний трамвай","в последнем трамвае","on the last tram",1],["интересный словарь","в интересном словаре","in the interesting dictionary",1],["близкий учитель","о близком учителе","about the close teacher",1],["старый писатель","о старом писателе","about the old writer",1],["маленький отель","в маленьком отеле","at the small hotel",1],["любимый гость","о любимом госте","about the favourite guest",1],["красный портфель","в красном портфеле","in the red briefcase",1],["синий корабль","на синем корабле","on the blue ship",1],["утренний спектакль","на утреннем спектакле","at the morning play",1],["новый санаторий","в новом санатории","at the new sanatorium",2],["маленький планетарий","в маленьком планетарии","at the small planetarium",2],["смешной сценарий","в смешном сценарии","in the funny script",2],["младший гений","о младшем гении","about the younger genius",2],["странный комментарий","в странном комментарии","in the strange comment",2],["дорогой кафетерий","в дорогом кафетерии","in the expensive cafeteria",2],["старый санаторий","в старом санатории","at the old sanatorium",2],["красивый планетарий","в красивом планетарии","at the beautiful planetarium",2],["скучный сценарий","в скучном сценарии","in the boring script",2],["известный гений","об известном гении","about the famous genius",2],["короткий комментарий","в коротком комментарии","in the short comment",2],["новый кафетерий","в новом кафетерии","in the new cafeteria",2],["большой санаторий","в большом санатории","at the big sanatorium",2],["современный планетарий","в современном планетарии","at the modern planetarium",2],["известный сценарий","в известном сценарии","in the famous script",2],["новый гений","о новом гении","about the new genius",2],["длинный комментарий","в длинном комментарии","in the long comment",2],["старый кафетерий","в старом кафетерии","in the old cafeteria",2],["маленький санаторий","в маленьком санатории","at the small sanatorium",2],["известный планетарий","в известном планетарии","at the famous planetarium",2],["последний сценарий","в последнем сценарии","in the last script",2],["лучший гений","о лучшем гении","about the best genius",2],["интересный комментарий","в интересном комментарии","in the interesting comment",2],["большой кафетерий","в большом кафетерии","in the big cafeteria",2],["красивый санаторий","в красивом санатории","at the beautiful sanatorium",2],["густой лес","в густом лесу","in the dense forest",3],["старый сад","в старом саду","in the old garden",3],["старый пол","на старом полу","on the old floor",3],["большой шкаф","в большом шкафу","in the big wardrobe",3],["новый мост","на новом мосту","on the new bridge",3],["маленький аэропорт","в маленьком аэропорту","at the small airport",3],["песчаный берег","на песчаном берегу","on the sandy shore",3],["тихий угол","в тихом углу","in the quiet corner",3],["большой порт","в большом порту","in the big port",3],["белый снег","в белом снегу","in the white snow",3],["новый год","в новом году","in the new year",3],["тёмный лес","в тёмном лесу","in the dark forest",3],["зелёный сад","в зелёном саду","in the green garden",3],["каменный пол","на каменном полу","on the stone floor",3],["маленький шкаф","в маленьком шкафу","in the small wardrobe",3],["каменный мост","на каменном мосту","on the stone bridge",3],["современный аэропорт","в современном аэропорту","at the modern airport",3],["каменный берег","на каменном берегу","on the stone shore",3],["тёплый угол","в тёплом углу","in the warm corner",3],["морской порт","в морском порту","in the sea port",3],["глубокий снег","в глубоком снегу","in the deep snow",3],["трудный год","в трудном году","in the difficult year",3],["большой лес","в большом лесу","in the big forest",3],["летний сад","в летнем саду","in the summer garden",3],["белый пол","на белом полу","on the white floor",3],["старый шкаф","в старом шкафу","in the old wardrobe",3],["высокий мост","на высоком мосту","on the tall bridge",3],["главный аэропорт","в главном аэропорту","at the main airport",3],["высокий берег","на высоком берегу","on the tall shore",3],["правый угол","в правом углу","in the right corner",3],["старый порт","в старом порту","in the old port",3],["свежий снег","в свежем снегу","in the fresh snow",3],["первый год","в первом году","in the first year",3],["зелёный лес","в зелёном лесу","in the green forest",3],["ботанический сад","в ботаническом саду","in the botanical garden",3],["чистый пол","на чистом полу","on the clean floor",3],["новый шкаф","в новом шкафу","in the new wardrobe",3],["длинный мост","на длинном мосту","on the long bridge",3],["центральный аэропорт","в центральном аэропорту","at the central airport",3],["крутой берег","на крутом берегу","on the steep shore",3],["левый угол","в левом углу","in the left corner",3],["новый порт","в новом порту","in the new port",3],["мокрый снег","в мокром снегу","in the wet snow",3],["последний год","в последнем году","in the last year",3],["тихий лес","в тихом лесу","in the quiet forest",3],["тихий сад","в тихом саду","in the quiet garden",3],["грязный пол","на грязном полу","on the dirty floor",3],["белый шкаф","в белом шкафу","in the white wardrobe",3],["узкий мост","на узком мосту","on the narrow bridge",3],["местный аэропорт","в местном аэропорту","at the local airport",3],["южный берег","на южном берегу","on the southern shore",3],["пустой угол","в пустом углу","in the empty corner",3],["главный порт","в главном порту","in the main port",3],["чистый снег","в чистом снегу","in the clean snow",3],["учебный год","в учебном году","in the academic year",3],["далёкий лес","в далёком лесу","in the distant forest",3],["городской сад","в городском саду","in the city garden",3],["холодный пол","на холодном полу","on the cold floor",3],["деревянный шкаф","в деревянном шкафу","in the wooden wardrobe",3],["широкий мост","на широком мосту","on the wide bridge",3],["огромный аэропорт","в огромном аэропорту","at the huge airport",3],["северный берег","на северном берегу","on the northern shore",3],["маленький угол","в маленьком углу","in the small corner",3],["известный порт","в известном порту","in the famous port",3],["холодный снег","в холодном снегу","in the cold snow",3],["счастливый год","в счастливом году","in the happy year",3],["старый лес","в старом лесу","in the old forest",3],["фруктовый сад","в фруктовом саду","in the fruit garden",3],["тёплый пол","на тёплом полу","on the warm floor",3],["кухонный шкаф","в кухонном шкафу","in the kitchen wardrobe",3],["густой лес","о густом лесе","about the dense forest",4],["старый сад","о старом саде","about the old garden",4],["широкий мост","о широком мосте","about the wide bridge",4],["каменный берег","о каменном береге","about the stone shore",4],["новый шкаф","о новом шкафе","about the new wardrobe",4],["маленький аэропорт","о маленьком аэропорте","about the small airport",4],["старый порт","о старом порте","about the old port",4],["тёмный лес","о тёмном лесе","about the dark forest",4],["зелёный сад","о зелёном саде","about the green garden",4],["большой мост","о большом мосте","about the big bridge",4],["высокий берег","о высоком береге","about the tall shore",4],["белый шкаф","о белом шкафе","about the white wardrobe",4],["современный аэропорт","о современном аэропорте","about the modern airport",4],["новый порт","о новом порте","about the new port",4],["большой лес","о большом лесе","about the big forest",4],["летний сад","о летнем саде","about the summer garden",4],["известный мост","об известном мосте","about the famous bridge",4],["крутой берег","о крутом береге","about the steep shore",4],["деревянный шкаф","о деревянном шкафе","about the wooden wardrobe",4],["главный аэропорт","о главном аэропорте","about the main airport",4],["большое окно","в большом окне","in the big window",5],["холодное озеро","на холодном озере","at the cold lake",5],["белое кресло","в белом кресле","in the white armchair",5],["шумное место","в шумном месте","in the noisy place",5],["огромное село","в огромном селе","in the huge village",5],["интересное письмо","в интересном письме","in the interesting letter",5],["острое блюдо","об остром блюде","about the spicy dish",5],["трудное слово","о трудном слове","about the difficult word",5],["высокое дерево","на высоком дереве","in the tall tree",5],["грязное зеркало","в грязном зеркале","in the dirty mirror",5],["чистое небо","на чистом небе","in the clean sky",5],["маленькое ведро","в маленьком ведре","in the small bucket",5],["большое болото","в большом болоте","in the big swamp",5],["старое кольцо","о старом кольце","about the old ring",5],["маленькое окно","в маленьком окне","in the small window",5],["тёплое озеро","на тёплом озере","at the warm lake",5],["кожаное кресло","в кожаном кресле","in the leather armchair",5],["хорошее место","в хорошем месте","in the good place",5],["южное село","в южном селе","in the southern village",5],["новое письмо","в новом письме","in the new letter",5],["главное блюдо","о главном блюде","about the main dish",5],["русское слово","о русском слове","about the Russian word",5],["старое дерево","на старом дереве","in the old tree",5],["большое зеркало","в большом зеркале","in the big mirror",5],["ночное небо","на ночном небе","in the night sky",5],["пустое ведро","в пустом ведре","in the empty bucket",5],["тёмное болото","в тёмном болоте","in the dark swamp",5],["новое кольцо","о новом кольце","about the new ring",5],["открытое окно","в открытом окне","in the open window",5],["тихое озеро","на тихом озере","at the quiet lake",5],["широкое кресло","в широком кресле","in the wide armchair",5],["тихое место","в тихом месте","in the quiet place",5],["северное село","в северном селе","in the northern village",5],["старое письмо","в старом письме","in the old letter",5],["вкусное блюдо","о вкусном блюде","about the tasty dish",5],["английское слово","об английском слове","about the English word",5],["большое дерево","на большом дереве","in the big tree",5],["маленькое зеркало","в маленьком зеркале","in the small mirror",5],["вечернее небо","на вечернем небе","in the evening sky",5],["красное ведро","в красном ведре","in the red bucket",5],["глубокое болото","в глубоком болоте","in the deep swamp",5],["обручальное кольцо","об обручальном кольце","about the wedding ring",5],["новое окно","в новом окне","in the new window",5],["красивое озеро","на красивом озере","at the beautiful lake",5],["любимое кресло","в любимом кресле","in the favourite armchair",5],["красивое место","в красивом месте","in the beautiful place",5],["зелёное село","в зелёном селе","in the green village",5],["важное письмо","в важном письме","in the important letter",5],["горячее блюдо","о горячем блюде","about the hot dish",5],["длинное слово","о длинном слове","about the long word",5],["зелёное дерево","на зелёном дереве","in the green tree",5],["старое зеркало","в старом зеркале","in the old mirror",5],["серое небо","на сером небе","in the grey sky",5],["синее ведро","в синем ведре","in the blue bucket",5],["старое болото","в старом болоте","in the old swamp",5],["золотое кольцо","о золотом кольце","about the gold ring",5],["старое окно","в старом окне","in the old window",5],["далёкое озеро","на далёком озере","at the distant lake",5],["новое кресло","в новом кресле","in the new armchair",5],["новое место","в новом месте","in the new place",5],["большое село","в большом селе","in the big village",5],["трудное письмо","в трудном письме","in the difficult letter",5],["холодное блюдо","о холодном блюде","about the cold dish",5],["короткое слово","о коротком слове","about the short word",5],["молодое дерево","на молодом дереве","in the young tree",5],["круглое зеркало","в круглом зеркале","in the round mirror",5],["звёздное небо","на звёздном небе","in the starry sky",5],["старое ведро","в старом ведре","in the old bucket",5],["далёкое болото","в далёком болоте","in the distant swamp",5],["серебряное кольцо","о серебряном кольце","about the silver ring",5],["большое море","в большом море","in the big sea",6],["открытое поле","в открытом поле","in the open field",6],["яркое солнце","на ярком солнце","in the bright sun",6],["разбитое сердце","в разбитом сердце","in the broken heart",6],["маленькое блюдце","на маленьком блюдце","on the small saucer",6],["глубокое море","в глубоком море","in the deep sea",6],["далёкое поле","в далёком поле","in the distant field",6],["горячее солнце","на горячем солнце","in the hot sun",6],["храброе сердце","в храбром сердце","in the brave heart",6],["белое блюдце","на белом блюдце","on the white saucer",6],["чистое море","в чистом море","in the clean sea",6],["пшеничное поле","в пшеничном поле","in the wheat field",6],["летнее солнце","на летнем солнце","in the summer sun",6],["тёплое сердце","в тёплом сердце","in the warm heart",6],["новое блюдце","на новом блюдце","on the new saucer",6],["холодное море","в холодном море","in the cold sea",6],["снежное поле","в снежном поле","in the snowy field",6],["весеннее солнце","на весеннем солнце","in the spring sun",6],["доброе сердце","в добром сердце","in the kind heart",6],["старое блюдце","на старом блюдце","on the old saucer",6],["тёплое море","в тёплом море","in the warm sea",6],["огромное поле","в огромном поле","in the huge field",6],["жаркое солнце","на жарком солнце","in the hot sun",6],["большое сердце","в большом сердце","in the big heart",6],["круглое блюдце","на круглом блюдце","on the round saucer",6],["новое здание","в новом здании","in the new building",7],["важное собрание","на важном собрании","at the important meeting",7],["вечернее занятие","на вечернем занятии","in the evening class",7],["трудное упражнение","в трудном упражнении","in the difficult exercise",7],["новое общежитие","в новом общежитии","in the new dorm",7],["интересное сообщение","в интересном сообщении","in the interesting message",7],["трудное задание","в трудном задании","in the difficult task",7],["первое предложение","в первом предложении","in the first sentence",7],["первое путешествие","в первом путешествии","on the first trip",7],["летнее расписание","в летнем расписании","in the summer timetable",7],["вечернее мероприятие","на вечернем мероприятии","at the evening event",7],["старое здание","в старом здании","in the old building",7],["скучное собрание","на скучном собрании","at the boring meeting",7],["утреннее занятие","на утреннем занятии","in the morning class",7],["лёгкое упражнение","в лёгком упражнении","in the easy exercise",7],["старое общежитие","в старом общежитии","in the old dorm",7],["новое сообщение","в новом сообщении","in the new message",7],["лёгкое задание","в лёгком задании","in the easy task",7],["последнее предложение","в последнем предложении","in the last sentence",7],["весёлое путешествие","в весёлом путешествии","on the cheerful trip",7],["зимнее расписание","в зимнем расписании","in the winter timetable",7],["утреннее мероприятие","на утреннем мероприятии","at the morning event",7],["большое здание","в большом здании","in the big building",7],["большое собрание","на большом собрании","at the big meeting",7],["школьное занятие","на школьном занятии","in the school class",7],["новое упражнение","в новом упражнении","in the new exercise",7],["большое общежитие","в большом общежитии","in the big dorm",7],["старое сообщение","в старом сообщении","in the old message",7],["новое задание","в новом задании","in the new task",7],["интересное предложение","в интересном предложении","in the interesting sentence",7],["трудное путешествие","в трудном путешествии","on the difficult trip",7],["школьное расписание","в школьном расписании","in the school timetable",7],["школьное мероприятие","на школьном мероприятии","at the school event",7],["маленькое здание","в маленьком здании","in the small building",7],["вечернее собрание","на вечернем собрании","at the evening meeting",7],["летнее занятие","на летнем занятии","in the summer class",7],["первое упражнение","в первом упражнении","in the first exercise",7],["маленькое общежитие","в маленьком общежитии","in the small dorm",7],["важное сообщение","в важном сообщении","in the important message",7],["первое задание","в первом задании","in the first task",7],["длинное предложение","в длинном предложении","in the long sentence",7],["долгое путешествие","в долгом путешествии","on the long trip",7],["новое расписание","в новом расписании","in the new timetable",7],["летнее мероприятие","на летнем мероприятии","at the summer event",7],["красивое здание","в красивом здании","in the beautiful building",7],["утреннее собрание","на утреннем собрании","at the morning meeting",7],["зимнее занятие","на зимнем занятии","in the winter class",7],["последнее упражнение","в последнем упражнении","in the last exercise",7],["современное общежитие","в современном общежитии","in the modern dorm",7],["трудное сообщение","в трудном сообщении","in the difficult message",7],["новая квартира","в новой квартире","in the new apartment",8],["тёмная комната","в тёмной комнате","in the dark room",8],["известная школа","в известной школе","at the famous school",8],["соседняя улица","на соседней улице","on the neighbouring street",8],["трудная работа","на трудной работе","at the difficult job",8],["толстая книга","в толстой книге","in the thick book",8],["тёплая погода","о тёплой погоде","about the warm weather",8],["русская литература","о русской литературе","about the Russian literature",8],["старая собака","о старой собаке","about the old dog",8],["свежая рыба","о свежей рыбе","about the fresh fish",8],["белая машина","в белой машине","in the white car",8],["маленькая сумка","в маленькой сумке","in the small bag",8],["кожаная коробка","в кожаной коробке","in the leather box",8],["широкая полка","на широкой полке","on the wide shelf",8],["тихая библиотека","в тихой библиотеке","in the quiet library",8],["известная больница","в известной больнице","in the famous hospital",8],["новая гостиница","в новой гостинице","in the new hotel",8],["последняя остановка","на последней остановке","at the last stop",8],["центральная почта","на центральной почте","at the central post office",8],["летняя выставка","на летней выставке","at the summer exhibition",8],["большая страна","в большой стране","in the big country",8],["красивая столица","в красивой столице","in the beautiful capital",8],["большая река","на большой реке","on the big river",8],["южная гора","на южной горе","on the southern mountain",8],["узкая дорога","на узкой дороге","on the narrow road",8],["молодая сестра","о молодой сестре","about the young sister",8],["умная подруга","об умной подруге","about the clever friend",8],["весёлая бабушка","о весёлой бабушке","about the cheerful grandmother",8],["летняя куртка","в летней куртке","in the summer jacket",8],["модная рубашка","в модной рубашке","in the fashionable shirt",8],["новая шапка","в новой шапке","in the new hat",8],["новая газета","в новой газете","in the new newspaper",8],["белая тарелка","на белой тарелке","on the white plate",8],["большая картина","на большой картине","in the big painting",8],["старая квартира","в старой квартире","in the old apartment",8],["тёплая комната","в тёплой комнате","in the warm room",8],["хорошая школа","в хорошей школе","at the good school",8],["тёмная улица","на тёмной улице","on the dark street",8],["интересная работа","на интересной работе","at the interesting job",8],["русская книга","в русской книге","in the Russian book",8],["холодная погода","о холодной погоде","about the cold weather",8],["английская литература","об английской литературе","about the English literature",8],["молодая собака","о молодой собаке","about the young dog",8],["вкусная рыба","о вкусной рыбе","about the tasty fish",8],["последняя машина","в последней машине","in the last car",8],["чёрная сумка","в чёрной сумке","in the black bag",8],["тяжёлая коробка","в тяжёлой коробке","in the heavy box",8],["новая полка","на новой полке","on the new shelf",8],["шумная библиотека","в шумной библиотеке","in the noisy library",8],["ближайшая больница","в ближайшей больнице","in the nearest hospital",8],["старая гостиница","в старой гостинице","in the old hotel",8],["следующая остановка","на следующей остановке","at the next stop",8],["местная почта","на местной почте","at the local post office",8],["зимняя выставка","на зимней выставке","at the winter exhibition",8],["маленькая страна","в маленькой стране","in the small country",8],["древняя столица","в древней столице","in the ancient capital",8],["глубокая река","на глубокой реке","on the deep river",8],["северная гора","на северной горе","on the northern mountain",8],["старая дорога","на старой дороге","on the old road",8],["старая сестра","о старой сестре","about the old sister",8],["весёлая подруга","о весёлой подруге","about the cheerful friend",8],["строгая бабушка","о строгой бабушке","about the strict grandmother",8],["длинная куртка","в длинной куртке","in the long jacket",8],["дорогая рубашка","в дорогой рубашке","in the expensive shirt",8],["старая шапка","в старой шапке","in the old hat",8],["старая газета","в старой газете","in the old newspaper",8],["большая тарелка","на большой тарелке","on the big plate",8],["маленькая картина","на маленькой картине","in the small painting",8],["большая квартира","в большой квартире","in the big apartment",8],["холодная комната","в холодной комнате","in the cold room",8],["любимая школа","в любимой школе","at the favourite school",8],["длинная улица","на длинной улице","on the long street",8],["скучная работа","на скучной работе","at the boring job",8],["английская книга","в английской книге","in the English book",8],["солнечная погода","о солнечной погоде","about the sunny weather",8],["современная литература","о современной литературе","about the modern literature",8],["чёрная собака","о чёрной собаке","about the black dog",8],["большая рыба","о большой рыбе","about the big fish",8],["первая машина","в первой машине","in the first car",8],["красная сумка","в красной сумке","in the red bag",8],["пустая коробка","в пустой коробке","in the empty box",8],["старая полка","на старой полке","on the old shelf",8],["ближайшая библиотека","в ближайшей библиотеке","in the nearest library",8],["шумная больница","в шумной больнице","in the noisy hospital",8],["большая гостиница","в большой гостинице","in the big hotel",8],["пустая остановка","на пустой остановке","at the empty stop",8],["огромная почта","на огромной почте","at the huge post office",8],["новогодняя выставка","на новогодней выставке","at the New Year exhibition",8],["далёкая страна","в далёкой стране","in the distant country",8],["северная столица","в северной столице","in the northern capital",8],["чистая река","на чистой реке","on the clean river",8],["известная гора","на известной горе","on the famous mountain",8],["новая дорога","на новой дороге","on the new road",8],["добрая сестра","о доброй сестре","about the kind sister",8],["строгая подруга","о строгой подруге","about the strict friend",8],["молодая бабушка","о молодой бабушке","about the young grandmother",8],["короткая куртка","в короткой куртке","in the short jacket",8],["красивая рубашка","в красивой рубашке","in the beautiful shirt",8],["тёплая шапка","в тёплой шапке","in the warm hat",8],["известная газета","в известной газете","in the famous newspaper",8],["маленькая тарелка","на маленькой тарелке","on the small plate",8],["новая картина","на новой картине","in the new painting",8],["маленькая квартира","в маленькой квартире","in the small apartment",8],["чистая комната","в чистой комнате","in the clean room",8],["уютная школа","в уютной школе","at the cosy school",8],["широкая улица","на широкой улице","on the wide street",8],["постоянная работа","на постоянной работе","at the permanent job",8],["хорошая книга","в хорошей книге","in the good book",8],["летняя погода","о летней погоде","about the summer weather",8],["классическая литература","о классической литературе","about the classical literature",8],["белая собака","о белой собаке","about the white dog",8],["маленькая рыба","о маленькой рыбе","about the small fish",8],["жёлтая машина","в жёлтой машине","in the yellow car",8],["кожаная сумка","в кожаной сумке","in the leather bag",8],["синяя коробка","в синей коробке","in the blue box",8],["большая полка","на большой полке","on the big shelf",8],["соседняя библиотека","в соседней библиотеке","in the neighbouring library",8],["новая больница","в новой больнице","in the new hospital",8],["маленькая гостиница","в маленькой гостинице","in the small hotel",8],["новая остановка","на новой остановке","at the new stop",8],["известная почта","на известной почте","at the famous post office",8],["интересная выставка","на интересной выставке","at the interesting exhibition",8],["соседняя страна","в соседней стране","in the neighbouring country",8],["южная столица","в южной столице","in the southern capital",8],["холодная река","на холодной реке","on the cold river",8],["высокая гора","на высокой горе","on the tall mountain",8],["главная дорога","на главной дороге","on the main road",8],["умная сестра","об умной сестре","about the clever sister",8],["хорошая подруга","о хорошей подруге","about the good friend",8],["добрая бабушка","о доброй бабушке","about the kind grandmother",8],["модная куртка","в модной куртке","in the fashionable jacket",8],["новая рубашка","в новой рубашке","in the new shirt",8],["красная шапка","в красной шапке","in the red hat",8],["местная газета","в местной газете","in the local newspaper",8],["пустая тарелка","на пустой тарелке","on the empty plate",8],["странная картина","на странной картине","in the strange painting",8],["уютная квартира","в уютной квартире","in the cosy apartment",8],["уютная комната","в уютной комнате","in the cosy room",8],["тихая школа","в тихой школе","at the quiet school",8],["узкая улица","на узкой улице","on the narrow street",8],["новая работа","на новой работе","at the new job",8],["любимая книга","в любимой книге","in the favourite book",8],["зимняя погода","о зимней погоде","about the winter weather",8],["детская литература","о детской литературе","about the children's literature",8],["весёлая собака","о весёлой собаке","about the cheerful dog",8],["жареная рыба","о жареной рыбе","about the fried fish",8],["пустая машина","в пустой машине","in the empty car",8],["тяжёлая сумка","в тяжёлой сумке","in the heavy bag",8],["новая коробка","в новой коробке","in the new box",8],["маленькая полка","на маленькой полке","on the small shelf",8],["местная библиотека","в местной библиотеке","in the local library",8],["старая больница","в старой больнице","in the old hospital",8],["красивая гостиница","в красивой гостинице","in the beautiful hotel",8],["старая остановка","на старой остановке","at the old stop",8],["ближайшая почта","на ближайшей почте","at the nearest post office",8],["последняя выставка","на последней выставке","at the last exhibition",8],["тёплая страна","в тёплой стране","in the warm country",8],["современная столица","в современной столице","in the modern capital",8],["тёплая река","на тёплой реке","on the warm river",8],["крутая гора","на крутой горе","on the steep mountain",8],["последняя неделя","на последней неделе","in the last week",9],["тёмная кухня","на тёмной кухне","in the dark kitchen",9],["счастливая семья","в счастливой семье","in the happy family",9],["родная деревня","в родной деревне","in the native village",9],["холодная земля","на холодной земле","on the cold land",9],["весёлая тётя","о весёлой тёте","about the cheerful aunt",9],["новая песня","в новой песне","in the new song",9],["жаркая пустыня","в жаркой пустыне","in the hot desert",9],["соседняя аллея","на соседней аллее","in the neighbouring avenue",9],["лучшая няня","о лучшей няне","about the best nanny",9],["следующая неделя","на следующей неделе","in the next week",9],["тёплая кухня","на тёплой кухне","in the warm kitchen",9],["хорошая семья","в хорошей семье","in the good family",9],["известная деревня","в известной деревне","in the famous village",9],["тёплая земля","на тёплой земле","on the warm land",9],["строгая тётя","о строгой тёте","about the strict aunt",9],["любимая песня","в любимой песне","in the favourite song",9],["далёкая пустыня","в далёкой пустыне","in the distant desert",9],["чистая аллея","на чистой аллее","in the clean avenue",9],["близкая няня","о близкой няне","about the close nanny",9],["прошлая неделя","на прошлой неделе","in the past week",9],["холодная кухня","на холодной кухне","in the cold kitchen",9],["большая семья","в большой семье","in the big family",9],["чистая деревня","в чистой деревне","in the clean village",9],["мокрая земля","на мокрой земле","on the wet land",9],["молодая тётя","о молодой тёте","about the young aunt",9],["весёлая песня","в весёлой песне","in the cheerful song",9],["сухая пустыня","в сухой пустыне","in the dry desert",9],["тёмная аллея","на тёмной аллее","in the dark avenue",9],["талантливая няня","о талантливой няне","about the talented nanny",9],["первая неделя","на первой неделе","in the first week",9],["чистая кухня","на чистой кухне","in the clean kitchen",9],["маленькая семья","в маленькой семье","in the small family",9],["огромная деревня","в огромной деревне","in the huge village",9],["сухая земля","на сухой земле","on the dry land",9],["добрая тётя","о доброй тёте","about the kind aunt",9],["грустная песня","в грустной песне","in the sad song",9],["огромная пустыня","в огромной пустыне","in the huge desert",9],["любимая аллея","на любимой аллее","in the favourite avenue",9],["молодая няня","о молодой няне","about the young nanny",9],["трудная неделя","на трудной неделе","in the difficult week",9],["уютная кухня","на уютной кухне","in the cosy kitchen",9],["дружная семья","в дружной семье","in the close-knit family",9],["южная деревня","в южной деревне","in the southern village",9],["родная земля","на родной земле","on the native land",9],["интересная история","об интересной истории","about the interesting story",10],["тёмная аудитория","в тёмной аудитории","in the dark lecture hall",10],["первая экскурсия","на первой экскурсии","on the first tour",10],["летняя лекция","на летней лекции","at the summer lecture",10],["новая лаборатория","в новой лаборатории","in the new lab",10],["большая фотография","на большой фотографии","in the big photo",10],["новая компания","в новой компании","in the new company",10],["известная станция","на известной станции","at the famous station",10],["большая коллекция","в большой коллекции","in the big collection",10],["известная организация","в известной организации","in the famous organisation",10],["большая армия","в большой армии","in the big army",10],["новая история","о новой истории","about the new story",10],["тёплая аудитория","в тёплой аудитории","in the warm lecture hall",10],["весёлая экскурсия","на весёлой экскурсии","on the cheerful tour",10],["зимняя лекция","на зимней лекции","at the winter lecture",10],["старая лаборатория","в старой лаборатории","in the old lab",10],["старая фотография","на старой фотографии","in the old photo",10],["известная компания","в известной компании","in the famous company",10],["ближайшая станция","на ближайшей станции","at the nearest station",10],["старая коллекция","в старой коллекции","in the old collection",10],["иностранная организация","в иностранной организации","in the foreign organisation",10],["старая армия","в старой армии","in the old army",10],["старая история","о старой истории","about the old story",10],["холодная аудитория","в холодной аудитории","in the cold lecture hall",10],["трудная экскурсия","на трудной экскурсии","on the difficult tour",10],["новогодняя лекция","на новогодней лекции","at the New Year lecture",10],["большая лаборатория","в большой лаборатории","in the big lab",10],["новая фотография","на новой фотографии","in the new photo",10],["иностранная компания","в иностранной компании","in the foreign company",10],["шумная станция","на шумной станции","at the noisy station",10],["ценная коллекция","в ценной коллекции","in the valuable collection",10],["местная организация","в местной организации","in the local organisation",10],["современная армия","в современной армии","in the modern army",10],["важная история","о важной истории","about the important story",10],["чистая аудитория","в чистой аудитории","in the clean lecture hall",10],["долгая экскурсия","на долгой экскурсии","on the long tour",10],["интересная лекция","на интересной лекции","at the interesting lecture",10],["маленькая лаборатория","в маленькой лаборатории","in the small lab",10],["красивая фотография","на красивой фотографии","in the beautiful photo",10],["местная компания","в местной компании","in the local company",10],["новая станция","на новой станции","at the new station",10],["частная коллекция","в частной коллекции","in the private collection",10],["крупная организация","в крупной организации","in the large organisation",10],["сильная армия","в сильной армии","in the strong army",10],["трудная история","о трудной истории","about the difficult story",10],["уютная аудитория","в уютной аудитории","in the cosy lecture hall",10],["интересная экскурсия","на интересной экскурсии","on the interesting tour",10],["последняя лекция","на последней лекции","at the last lecture",10],["современная лаборатория","в современной лаборатории","in the modern lab",10],["смешная фотография","на смешной фотографии","in the funny photo",10],["большая площадь","на большой площади","on the big square",11],["тонкая тетрадь","в тонкой тетради","in the thin notebook",11],["большая очередь","в большой очереди","in the big queue",11],["старая дверь","на старой двери","on the old door",11],["большая кровать","на большой кровати","on the big bed",11],["короткая жизнь","о короткой жизни","about the short life",11],["красивая область","в красивой области","in the beautiful region",11],["древняя крепость","в древней крепости","in the ancient fortress",11],["снежная степь","в снежной степи","in the snowy steppe",11],["важная роль","о важной роли","about the important role",11],["интересная новость","об интересной новости","about the interesting news",11],["важная вещь","о важной вещи","about the important thing",11],["зимняя ночь","о зимней ночи","about the winter night",11],["маленькая площадь","на маленькой площади","on the small square",11],["синяя тетрадь","в синей тетради","in the blue notebook",11],["огромная очередь","в огромной очереди","in the huge queue",11],["новая дверь","на новой двери","on the new door",11],["маленькая кровать","на маленькой кровати","on the small bed",11],["интересная жизнь","об интересной жизни","about the interesting life",11],["старая область","в старой области","in the old region",11],["каменная крепость","в каменной крепости","in the stone fortress",11],["огромная степь","в огромной степи","in the huge steppe",11],["интересная роль","об интересной роли","about the interesting role",11],["новая новость","о новой новости","about the new news",11],["любимая вещь","о любимой вещи","about the favourite thing",11],["длинная ночь","о длинной ночи","about the long night",11],["красивая площадь","на красивой площади","on the beautiful square",11],["красная тетрадь","в красной тетради","in the red notebook",11],["длинная очередь","в длинной очереди","in the long queue",11],["деревянная дверь","на деревянной двери","on the wooden door",11],["удобная кровать","на удобной кровати","on the comfortable bed",11],["трудная жизнь","о трудной жизни","about the difficult life",11],["современная область","в современной области","in the modern region",11],["известная крепость","в известной крепости","in the famous fortress",11],["южная степь","в южной степи","in the southern steppe",11],["маленькая роль","о маленькой роли","about the small role",11],["старая новость","о старой новости","about the old news",11],["новая вещь","о новой вещи","about the new thing",11],["тихая ночь","о тихой ночи","about the quiet night",11],["старая площадь","на старой площади","on the old square",11],["школьная тетрадь","в школьной тетради","in the school notebook",11],["короткая очередь","в короткой очереди","in the short queue",11],["железная дверь","на железной двери","on the iron door",11],["мягкая кровать","на мягкой кровати","on the soft bed",11],["долгая жизнь","о долгой жизни","about the long life",11],["тихая область","в тихой области","in the quiet region",11],["большая крепость","в большой крепости","in the big fortress",11],["дикая степь","в дикой степи","in the wild steppe",11],["главная роль","о главной роли","about the main role",11],["важная новость","о важной новости","about the important news",11],["старая вещь","о старой вещи","about the old thing",11],["звёздная ночь","о звёздной ночи","about the starry night",11],["тихая площадь","на тихой площади","on the quiet square",11],["новая тетрадь","в новой тетради","in the new notebook",11],["белая дверь","на белой двери","on the white door",11],["новые дома","в новых домах","in new houses",12],["старые города","в старых городах","in old cities",12],["зелёные парки","в зелёных парках","in green parks",12],["уютные магазины","в уютных магазинах","in cosy shops",12],["старые книги","в старых книгах","in old books",12],["шумные улицы","на шумных улицах","on noisy streets",12],["большие горы","в больших горах","in big mountains",12],["тихие деревни","в тихих деревнях","in quiet villages",12],["чистые моря","в чистых морях","in clean seas",12],["шумные здания","в шумных зданиях","in noisy buildings",12],["известные песни","в известных песнях","in famous songs",12],["новые фотографии","на новых фотографиях","in new photos",12],["смешные новости","в смешных новостях","in funny news stories",12],["соседние страны","в соседних странах","in neighbouring countries",12],["тихие школы","в тихих школах","in quiet schools",12],["старые комнаты","в старых комнатах","in old rooms",12],["новые музеи","в новых музеях","in new museums",12],["маленькие театры","в маленьких театрах","in small theatres",12],["южные реки","на южных реках","on southern rivers",12],["зимние леса","в зимних лесах","in winter forests",12],["летние сады","в летних садах","in summer gardens",12],["маленькие машины","в маленьких машинах","in small cars",12],["южные острова","на южных островах","on southern islands",12],["холодные озёра","на холодных озёрах","on cold lakes",12],["большие поля","в больших полях","in big fields",12],["шумные гостиницы","в шумных гостиницах","in noisy hotels",12],["вечерние концерты","на вечерних концертах","at evening concerts",12],["уютные квартиры","в уютных квартирах","in cosy apartments",12],["последние письма","в последних письмах","in last letters",12],["странные фильмы","о странных фильмах","about strange films",12],["молодые учителя","о молодых учителях","about young teachers",12],["умные сёстры","об умных сёстрах","about clever sisters",12],["чёрные собаки","о чёрных собаках","about black dogs",12],["синие сумки","в синих сумках","in blue bags",12],["известные рестораны","в известных ресторанах","in famous restaurants",12],["старые дома","в старых домах","in old houses",12],["современные города","в современных городах","in modern cities",12],["центральные парки","в центральных парках","in central parks",12],["тихие магазины","в тихих магазинах","in quiet shops",12],["большие книги","в больших книгах","in big books",12],["главные улицы","на главных улицах","on main streets",12],["далёкие горы","в далёких горах","in distant mountains",12],["шумные деревни","в шумных деревнях","in noisy villages",12],["холодные моря","в холодных морях","in cold seas",12],["ближайшие здания","в ближайших зданиях","in nearest buildings",12],["народные песни","в народных песнях","in folk songs",12],["красивые фотографии","на красивых фотографиях","in beautiful photos",12],["скучные новости","в скучных новостях","in boring news stories",12],["тёплые страны","в тёплых странах","in warm countries",12],["шумные школы","в шумных школах","in noisy schools",12],["соседние комнаты","в соседних комнатах","in neighbouring rooms",12],["старые музеи","в старых музеях","in old museums",12],["красивые театры","в красивых театрах","in beautiful theatres",12],["большие реки","на больших реках","on big rivers",12],["летние леса","в летних лесах","in summer forests",12],["ботанические сады","в ботанических садах","in botanical gardens",12],["синие машины","в синих машинах","in blue cars",12],["северные острова","на северных островах","on northern islands",12],["тёплые озёра","на тёплых озёрах","on warm lakes",12],["широкие поля","в широких полях","in wide fields",12],["ближайшие гостиницы","в ближайших гостиницах","in nearest hotels",12],["утренние концерты","на утренних концертах","at morning concerts",12],["светлые квартиры","в светлых квартирах","in light apartments",12],["любимые письма","в любимых письмах","in favourite letters",12],["короткие фильмы","о коротких фильмах","about short films",12],["старые учителя","о старых учителях","about old teachers",12],["весёлые сёстры","о весёлых сёстрах","about cheerful sisters",12],["белые собаки","о белых собаках","about white dogs",12],["новые сумки","в новых сумках","in new bags",12],["хорошие рестораны","в хороших ресторанах","in good restaurants",12],["большие дома","в больших домах","in big houses",12],["тихие города","в тихих городах","in quiet cities",12],["городские парки","в городских парках","in city parks",12],["шумные магазины","в шумных магазинах","in noisy shops",12],["маленькие книги","в маленьких книгах","in small books",12],["центральные улицы","на центральных улицах","on central streets",12],["красивые горы","в красивых горах","in beautiful mountains",12],["далёкие деревни","в далёких деревнях","in distant villages",12],["тёплые моря","в тёплых морях","in warm seas",12],["соседние здания","в соседних зданиях","in neighbouring buildings",12],["русские песни","в русских песнях","in Russian songs",12],["смешные фотографии","на смешных фотографиях","in funny photos",12],["известные новости","в известных новостях","in famous news stories",12],["холодные страны","в холодных странах","in cold countries",12],["ближайшие школы","в ближайших школах","in nearest schools",12],["просторные комнаты","в просторных комнатах","in spacious rooms",12],["большие музеи","в больших музеях","in big museums",12],["современные театры","в современных театрах","in modern theatres",12],["глубокие реки","на глубоких реках","on deep rivers",12],["сосновые леса","в сосновых лесах","in pine forests",12],["тихие сады","в тихих садах","in quiet gardens",12],["красные машины","в красных машинах","in red cars",12],["маленькие острова","на маленьких островах","on small islands",12],["тихие озёра","на тихих озёрах","on quiet lakes",12],["зелёные поля","в зелёных полях","in green fields",12],["соседние гостиницы","в соседних гостиницах","in neighbouring hotels",12],["школьные концерты","на школьных концертах","at school concerts",12],["тёмные квартиры","в тёмных квартирах","in dark apartments",12],["главные письма","в главных письмах","in main letters",12],["длинные фильмы","о длинных фильмах","about long films",12],["добрые учителя","о добрых учителях","about kind teachers",12],["строгие сёстры","о строгих сёстрах","about strict sisters",12],["весёлые собаки","о весёлых собаках","about cheerful dogs",12],["старые сумки","в старых сумках","in old bags",12],["любимые рестораны","в любимых ресторанах","in favourite restaurants",12],["маленькие дома","в маленьких домах","in small houses",12],["шумные города","в шумных городах","in noisy cities",12],["ближайшие парки","в ближайших парках","in nearest parks",12],["ближайшие магазины","в ближайших магазинах","in nearest shops",12],["толстые книги","в толстых книгах","in thick books",12],["старые улицы","на старых улицах","on old streets",12],["южные горы","в южных горах","in southern mountains",12],["соседние деревни","в соседних деревнях","in neighbouring villages",12],["тихие моря","в тихих морях","in quiet seas",12],["местные здания","в местных зданиях","in local buildings",12],["старые песни","в старых песнях","in old songs",12],["любимые фотографии","на любимых фотографиях","in favourite photos",12],["последние новости","в последних новостях","in last news stories",12],["северные страны","в северных странах","in northern countries",12],["соседние школы","в соседних школах","in neighbouring schools",12],["мой дом","в моём доме","in my house",13],["твой брат","о твоём брате","about your brother",13],["наше место","в нашем месте","in our place",13],["ваш сад","в вашем саду","in your garden",13],["эта сестра","об этой сестре","about this sister",13],["та квартира","в той квартире","in that apartment",13],["его машина","в его машине","in his car (его never changes)",13],["её город","в её городе","in her city (её never changes)",13],["их книга","в их книге","in their book (их never changes)",13],["моя школа","в моей школе","at my school",13],["твоё письмо","в твоём письме","in your letter",13],["наши друзья","о наших друзьях","about our friends",13],["ваш учитель","о вашем учителе","about your teacher",13],["эта комната","в этой комнате","in this room",13],["то здание","в том здании","in that building",13],["его дети","о его детях","about his children (его never changes)",13],["её дом","в её доме","in her house (её never changes)",13],["их брат","об их брате","about their brother (их never changes)",13],["моё место","в моём месте","in my place",13],["твой сад","в твоём саду","in your garden",13],["наша сестра","о нашей сестре","about our sister",13],["ваша квартира","в вашей квартире","in your apartment",13],["эта машина","в этой машине","in this car",13],["тот город","в том городе","in that city",13],["его книга","в его книге","in his book (его never changes)",13],["её школа","в её школе","at her school (её never changes)",13],["их письмо","в их письме","in their letter (их never changes)",13],["мои друзья","о моих друзьях","about my friends",13],["твой учитель","о твоём учителе","about your teacher",13],["наша комната","в нашей комнате","in our room",13],["ваше здание","в вашем здании","in your building",13],["эти дети","об этих детях","about these children",13],["тот дом","в том доме","in that house",13],["его брат","о его брате","about his brother (его never changes)",13],["её место","в её месте","in her place (её never changes)",13],["их сад","в их саду","in their garden (их never changes)",13],["моя сестра","о моей сестре","about my sister",13],["твоя квартира","в твоей квартире","in your apartment",13],["наша машина","в нашей машине","in our car",13],["ваш город","в вашем городе","in your city",13],["добрая мать","о доброй матери","about the kind mother",14],["молодая мать","о молодой матери","about the young mother",14],["младшая дочь","о младшей дочери","about the younger daughter",14],["старшая дочь","о старшей дочери","about the older daughter",14],["красивое имя","о красивом имени","about the beautiful name",14],["редкое имя","о редком имени","about the rare name",14],["свободное время","о свободном времени","about free time",14],["трудное время","о трудном времени","about the difficult time",14],["долгий путь","в долгом пути","on the long journey",14],["трудный путь","о трудном пути","about the difficult path",14],["новое кафе","в новом кафе","in the new café (noun never changes)",14],["уютное кафе","в уютном кафе","in the cosy café (noun never changes)",14],["тёплое пальто","в тёплом пальто","in a warm coat (noun never changes)",14],["чёрное пальто","в чёрном пальто","in the black coat (noun never changes)",14],["московское метро","в московском метро","in the Moscow metro (noun never changes)",14],["жёлтое такси","в жёлтом такси","in the yellow taxi (noun never changes)",14],["старое радио","о старом радио","about the old radio (noun never changes)",14],["новое меню","в новом меню","in the new menu (noun never changes)",14],["интересное интервью","в интересном интервью","in the interesting interview (noun never changes)",14],["старое кино","о старом кино","about old cinema (noun never changes)",14],["центральный рынок","на центральном рынке","at the central market (о drops out)",14],["добрый отец","о добром отце","about the kind father (е drops out)",14],["высокий потолок","на высоком потолке","on the high ceiling (о drops out)",14],["трудный день","о трудном дне","about the difficult day (е drops out)",14],["холодный ветер","о холодном ветре","about the cold wind (е drops out)",14],["старая церковь","в старой церкви","in the old church (о drops out)",14],["первая любовь","о первой любви","about first love (о drops out)",14],["страшный сон","в страшном сне","in a bad dream (о drops out)",14],["высокий лоб","на высоком лбу","on the high forehead (о drops out + -у)",14],["тонкий лёд","на тонком льду","on thin ice (ё drops out + -у)",14],["маленький кусок","о маленьком куске","about the small piece (о drops out)",14],["горячий песок","в горячем песке","in the hot sand (о drops out)",14],["новый кошелёк","в новом кошельке","in the new wallet (ё drops out)",14],["тёплый платок","в тёплом платке","in a warm headscarf (о drops out)",14],["маленькие дети","о маленьких детях","about small children (irregular plural)",14],["молодые люди","о молодых людях","about young people (irregular plural)",14],["старые друзья","о старых друзьях","about old friends (irregular plural)",14],["старшие братья","о старших братьях","about older brothers (irregular plural)",14],["добрые соседи","о добрых соседях","about kind neighbours (irregular plural)",14],["высокие деревья","на высоких деревьях","in tall trees (irregular plural)",14]]};
+/* ---------- helpers ---------- */
+const S = s => String(s).replace(/\^/g, "́");
+const P = s => String(s).replace(/\^/g, "");
+const $ = (sel, el=document) => el.querySelector(sel);
+const shuffle = a => { a = a.slice(); for (let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+const pick = a => a[Math.floor(Math.random()*a.length)];
+const today = () => { const d=new Date(); return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- vocabulary (Новые слова и выражения, pp. 138–141) ---------- */
+const DECKS = [
+ {id:"countries", ru:"Страны", en:"Countries & nationalities", items:[
+  ["Аме^рика / США","America, U.S.","америка^нец / америка^нка · америка^нский"],
+  ["А^нглия","England","англича^нин / англича^нка (pl. англича^не) · англи^йский"],
+  ["Арме^ния","Armenia","армяни^н / армя^нка (pl. армя^не) · армя^нский"],
+  ["Герма^ния","Germany","не^мец / не^мка · неме^цкий"],
+  ["Еги^пет","Egypt","ара^б / ара^бка (pl. ара^бы) · ара^бский"],
+  ["Испа^ния","Spain","испа^нец / испа^нка · испа^нский"],
+  ["Ита^лия","Italy","италья^нец / италья^нка · италья^нский"],
+  ["Казахста^н","Kazakhstan","каза^х / каза^шка · каза^хский"],
+  ["Кана^да","Canada","кана^дец / кана^дка · кана^дский"],
+  ["Кита^й","China","кита^ец / китая^нка · кита^йский"],
+  ["Ме^ксика","Mexico","мексика^нец / мексика^нка · мексика^нский"],
+  ["Пакиста^н","Pakistan","пакиста^нец / пакиста^нка"],
+  ["Росси^я","Russia","россия^нин / россия^нка (pl. россия^не) · росси^йский; ру^сский / ру^сская"],
+  ["Украи^на","Ukraine","украи^нец / украи^нка · украи^нский"],
+  ["Фра^нция","France","францу^з / францу^женка · францу^зский"],
+  ["Япо^ния","Japan","япо^нец / япо^нка · япо^нский"]]},
+ {id:"ethnic", ru:"Этнос", en:"Ethnicities in North America", items:[
+  ["афроамерика^нец / афроамерика^нка","African American","pl. афроамерика^нцы"],
+  ["лати^нос","Latino, Latina","pl. лати^носы"],
+  ["евре^й / евре^йка","Jewish","pl. евре^и"],
+  ["инде^ец / индиа^нка","Native American","pl. инде^йцы"],
+  ["коренно^й","Indigenous",""],
+  ["коренно^е населе^ние","Indigenous population",""]]},
+ {id:"nouns", ru:"Существительные", en:"Nouns", items:[
+  ["Ерева^н","Yerevan","capital of Armenia"],["кварти^ра","apartment",""],["курс","course",""],
+  ["ле^кция","lecture",""],["ма^ть","mother","fem.; pl. ма^тери"],["национа^льность","nationality",""],
+  ["обме^н","exchange",""],["общежи^тие","dormitory",""],["оте^ц","father","fleeting е: отца^"],
+  ["роди^тели","parents",""],["ры^нок","market","pl. ры^нки"],["семья^","family","pl. се^мьи"],
+  ["сло^во","word","pl. слова^"],["страна^","country","pl. стра^ны"],["шко^ла","school",""],
+  ["язы^к","language","pl. языки^"]]},
+ {id:"mods", ru:"Местоимения и прилагательные", en:"Pronouns & adjectives", items:[
+  ["всё","everything",""],["его^","him / it",""],["мы","we",""],["европе^йский","European",""],
+  ["оди^н (одна^, одно^, одни^)","one; a certain","одно^ сло^во: a certain word"],["иностра^нный","foreign",""],
+  ["полити^ческий","political",""],["фина^нсовый","financial",""]]},
+ {id:"verbs", ru:"Глаголы", en:"Verbs", items:[
+  ["говори^ть","to speak, to say","говорю^, говори^шь, говоря^т"],["жить","to live","живу^, живёшь, живу^т"],
+  ["знать","to know","зна^ю, зна^ешь, зна^ют"],["изуча^ть (что)","to study (a subject)","изуча^ю, изуча^ешь, изуча^ют"],
+  ["писа^ть","to write","пишу^, пи^шешь, пи^шут"],["понима^ть","to understand","понима^ю, понима^ешь, понима^ют"],
+  ["чита^ть","to read","чита^ю, чита^ешь, чита^ют"]]},
+ {id:"adverbs", ru:"Наречия", en:"Adverbs", items:[
+  ["бы^стро","quickly",""],["всегда^","always",""],["дово^льно","quite",""],["ещё","still",""],
+  ["иногда^","sometimes",""],["ме^дленно","slowly",""],["немно^го, немно^жко","a little",""],
+  ["непло^хо","pretty well",""],["норма^льно","in a normal way",""],["о^чень","very",""],
+  ["пло^хо","poorly",""],["ра^ньше","previously",""],["свобо^дно","fluently",""],["сейча^с","now",""],
+  ["так","so",""],["хорошо^","well",""]]},
+ {id:"langs", ru:"По-…", en:"Languages (по-…)", items:[
+  ["по-англи^йски","in English",""],["по-ара^бски","in Arabic",""],["по-испа^нски","in Spanish",""],
+  ["по-италья^нски","in Italian",""],["по-каза^хски","in Kazakh",""],["по-кита^йски","in Chinese",""],
+  ["по-неме^цки","in German",""],["по-ру^сски","in Russian",""],["по-украи^нски","in Ukrainian",""],
+  ["по-францу^зски","in French",""],["по-япо^нски","in Japanese",""]]},
+ {id:"small", ru:"Маленькие слова", en:"Prepositions & conjunctions", items:[
+  ["на","on","+ prepositional case"],["о / об","about","+ prepositional case; об before а, э, и, о, у"],
+  ["и","and",""],["когда^","when",""],["но","but",""],["что","that",""],["не","not","negates the following word"]]},
+ {id:"phrases", ru:"Выражения", en:"Words & phrases", items:[
+  ["Большо^е спаси^бо.","Thank you very much.",""],["Говори^те ме^дленнее.","Speak more slowly.",""],
+  ["До свида^ния.","Good-bye.",""],["до^ма","at home",""],["Извини^те.","Excuse me.",""],
+  ["Как по-ру^сски …?","How do you say … in Russian?",""],["Кто … по национа^льности?","What is …'s nationality?",""],
+  ["На каки^х языка^х вы говори^те до^ма?","What languages do you speak at home?",""],
+  ["На како^м языке^ вы говори^те до^ма?","What language do you speak at home?",""],
+  ["одно^ сло^во","a certain word",""],["Отку^да вы зна^ете ру^сский язы^к?","How do you know Russian?",""],
+  ["О чём …?","About what …?",""],["Поня^тно.","Understood. Got it.",""],["пожа^луйста","please",""],
+  ["по национа^льности","by nationality",""],["Разреши^те предста^виться.","Allow me to introduce myself.",""],
+  ["Что^ вы (ты)!","Oh, no! Not at all!","response to a compliment"],["Что э^то тако^е?","(Just) what is that?",""],
+  ["Э^то бу^дет …","That would be …",""],["Я забы^л(а).","I forgot.",""],["Я^сно.","Clear; I see.",""]]}
+];
+
+/* ---------- grammar data ---------- */
+const PRON = ["я","ты","он","она","мы","вы","они"], PIDX=[0,1,2,2,3,4,5];
+const VERBS = [
+ {inf:"знать", f:["зна^ю","зна^ешь","зна^ет","зна^ем","зна^ете","зна^ют"], tail:"ру^сский язы^к", type:"е-type, stem stress", past:"зна^л"},
+ {inf:"чита^ть", f:["чита^ю","чита^ешь","чита^ет","чита^ем","чита^ете","чита^ют"], tail:"по-англи^йски", type:"е-type, stem stress", past:"чита^л"},
+ {inf:"понима^ть", f:["понима^ю","понима^ешь","понима^ет","понима^ем","понима^ете","понима^ют"], tail:"по-ру^сски", type:"е-type, stem stress", past:"понима^л"},
+ {inf:"изуча^ть", f:["изуча^ю","изуча^ешь","изуча^ет","изуча^ем","изуча^ете","изуча^ют"], tail:"испа^нский язы^к", type:"е-type, stem stress", past:"изуча^л"},
+ {inf:"жить", f:["живу^","живёшь","живёт","живём","живёте","живу^т"], tail:"в общежи^тии", type:"ё-type, end stress; stem жив-", past:"жил"},
+ {inf:"писа^ть", f:["пишу^","пи^шешь","пи^шет","пи^шем","пи^шете","пи^шут"], tail:"по-францу^зски", type:"е-type, stem пиш-, shifting stress", past:"писа^л"},
+ {inf:"говори^ть", f:["говорю^","говори^шь","говори^т","говори^м","говори^те","говоря^т"], tail:"по-испа^нски", type:"и-type, end stress", past:"говори^л"}
+];
+const pastForms = v => v.inf==="жить" ? ["жил","жила^","жи^ло","жи^ли"] : ["","а","о","и"].map(e => v.past + e);
+const PAST_SUBJ = [["Ма^ма","f"],["Па^па","m"],["Мой брат","m"],["Моя^ сестра^","f"],["Мы","pl"],["Они^","pl"],["Вы","pl"],["А^нна","f"],["Ива^н","m"],["Студе^нты","pl"],["Профе^ссор","m"],["Моя^ подру^га","f"]];
+const PAST_TAIL = {"знать":"англи^йский язы^к","чита^ть":"по-ру^сски","понима^ть":"по-неме^цки","изуча^ть":"кита^йский язы^к","жить":"в Росси^и","писа^ть":"по-францу^зски","говори^ть":"по-испа^нски"};
+
+const NAT = [ // en, he, she, they, adjective
+ ["American","америка^нец","америка^нка","америка^нцы","америка^нский"],
+ ["English","англича^нин","англича^нка","англича^не","англи^йский"],
+ ["Armenian","армяни^н","армя^нка","армя^не","армя^нский"],
+ ["German","не^мец","не^мка","не^мцы","неме^цкий"],
+ ["Arab","ара^б","ара^бка","ара^бы","ара^бский"],
+ ["Spanish","испа^нец","испа^нка","испа^нцы","испа^нский"],
+ ["Italian","италья^нец","италья^нка","италья^нцы","италья^нский"],
+ ["Kazakh","каза^х","каза^шка","каза^хи","каза^хский"],
+ ["Canadian","кана^дец","кана^дка","кана^дцы","кана^дский"],
+ ["Chinese","кита^ец","китая^нка","кита^йцы","кита^йский"],
+ ["Mexican","мексика^нец","мексика^нка","мексика^нцы","мексика^нский"],
+ ["Russian (ethnic)","ру^сский","ру^сская","ру^сские","ру^сский"],
+ ["Russian (citizen)","россия^нин","россия^нка","россия^не","росси^йский"],
+ ["Ukrainian","украи^нец","украи^нка","украи^нцы","украи^нский"],
+ ["French","францу^з","францу^женка","францу^зы","францу^зский"],
+ ["Japanese","япо^нец","япо^нка","япо^нцы","япо^нский"]
+];
+const LANGS = [["ру^сский","по-ру^сски","Russian"],["англи^йский","по-англи^йски","English"],["францу^зский","по-францу^зски","French"],["испа^нский","по-испа^нски","Spanish"],["неме^цкий","по-неме^цки","German"],["кита^йский","по-кита^йски","Chinese"],["япо^нский","по-япо^нски","Japanese"],["италья^нский","по-италья^нски","Italian"],["ара^бский","по-ара^бски","Arabic"],["украи^нский","по-украи^нски","Ukrainian"],["каза^хский","по-каза^хски","Kazakh"]];
+const LANG_S = [
+ ["Я хорошо^ говорю^ ___.","adv"],["Мы изуча^ем ___.","lang"],["Вы зна^ете ___?","lang"],["Она^ немно^го понима^ет ___.","adv"],
+ ["Они^ чита^ют и пи^шут ___.","adv"],["Мой оте^ц свобо^дно говори^т ___.","adv"],["Ра^ньше я изуча^ла ___.","lang"],
+ ["Ты пи^шешь ___?","adv"],["Кто зна^ет ___?","lang"],["Студе^нты ме^дленно чита^ют ___.","adv"],["Моя^ мать не зна^ет ___.","lang"],["Я пло^хо понима^ю ___.","adv"]
+];
+const PREP_CH = [ // chapter-vocabulary phrases: nominative, prepositional, English
+ ["шко^ла","в шко^ле","at school"],["кварти^ра","в кварти^ре","in the apartment"],["общежи^тие","в общежи^тии","in the dorm"],
+ ["ле^кция","на ле^кции","at the lecture"],["ры^нок","на ры^нке","at the market"],["семья^","в семье^","in the family"],
+ ["страна^","в стране^","in the country"],["Аме^рика","в Аме^рике","in America"],["Росси^я","в Росси^и","in Russia"],
+ ["Герма^ния","в Герма^нии","in Germany"],["Арме^ния","в Арме^нии","in Armenia"],["Ерева^н","в Ерева^не","in Yerevan"],
+ ["Казахста^н","в Казахста^не","in Kazakhstan"],["Кана^да","в Кана^де","in Canada"],["Кита^й","в Кита^е","in China"],
+ ["Испа^ния","в Испа^нии","in Spain"],["Украи^на","в Украи^не","in Ukraine"],["Япо^ния","в Япо^нии","in Japan"],
+ ["Ме^ксика","в Ме^ксике","in Mexico"],["Ита^лия","в Ита^лии","in Italy"],
+ ["на^ша шко^ла","в на^шей шко^ле","at our school"],["моя^ кварти^ра","в мое^й кварти^ре","in my apartment"],
+ ["э^то общежи^тие","в э^том общежи^тии","in this dorm"],["наш университе^т","в на^шем университе^те","at our university"],
+ ["ва^ша семья^","в ва^шей семье^","in your family"],["твой го^род","в твоём го^роде","in your city"],
+ ["иностра^нные языки^","об иностра^нных языка^х","about foreign languages"],["европе^йские стра^ны","в европе^йских стра^нах","in European countries"],
+ ["фина^нсовый ры^нок","на фина^нсовом ры^нке","on the financial market"],["но^вое сло^во","о но^вом сло^ве","about the new word"],
+ ["роди^тели","о роди^телях","about the parents"],["оте^ц","об отце^","about father"],["мать","о ма^тери","about mother"],
+ ["хоро^ший курс","о хоро^шем ку^рсе","about a good course"],["большо^й ры^нок","на большо^м ры^нке","at the big market"],
+ ["одна^ страна^","в одно^й стране^","in one country"],["мои^ роди^тели","о мои^х роди^телях","about my parents"],
+ ["ру^сский язы^к","на ру^сском языке^","in Russian"],["англи^йский язы^к","на англи^йском языке^","in English"],["э^ти ле^кции","на э^тих ле^кциях","at these lectures"]
+];
+const CONJ = [
+ ["А^нна говори^т по-ру^сски, ___ Джон говори^т по-англи^йски.","а","Two different people doing different things: а contrasts them."],
+ ["Ма^ша говори^т по-испа^нски ___ по-францу^зски.","и","Both things are true of Masha in the same way: и joins them."],
+ ["Я понима^ю по-неме^цки, ___ пло^хо говорю^.","но","She understands, but (unexpectedly) speaks poorly: но."],
+ ["Мой оте^ц америка^нец, ___ мать кана^дка.","а","Different people, different nationalities: а."],
+ ["Мы чита^ем ___ пи^шем по-ру^сски.","и","Two actions that go together: и."],
+ ["Она^ изуча^ет ру^сский язы^к, ___ ещё пло^хо понима^ет.","но","Studying it, yet still understands poorly: a contradiction, so но."],
+ ["Мой брат живёт в Москве^, ___ сестра^ живёт в Ки^еве.","а","Two people compared side by side: а."],
+ ["Э^то Ка^тя ___ Алёша.","и","Simply listing two people: и."],
+ ["Он не ру^сский, ___ хорошо^ говори^т по-ру^сски.","но","Not Russian, but speaks Russian well: an unexpected outcome, so но."],
+ ["Я живу^ в общежи^тии, ___ мои^ роди^тели живу^т в кварти^ре.","а","Contrasting where different people live: а."],
+ ["Ма^ма зна^ет англи^йский язы^к, ___ па^па то^же.","и","The same thing is true of both (то^же): и."],
+ ["Он немно^го понима^ет по-япо^нски, ___ не говори^т.","но","Understands, but does not speak: но."],
+ ["Я америка^нка, ___ ты?","а","а opens a question asking for the other person's information: \"and you?\""],
+ ["Ра^ньше я жила^ в Ме^ксике, ___ сейча^с живу^ в Кана^де.","а","Then versus now, two different situations: а."]
+];
+
+/* ---------- grammar reference cards (Грамматика, pp. 108–131) ---------- */
+const GRAM = [
+ {t:"Verb conjugation: е/ё type", pg:"pp. 108–110", h:`
+  <p>Most verbs ending in <b>-ать</b> conjugate with <b>е</b> in the endings (<b>ё</b> when the ending is stressed). Drop <b>-ть</b>, add the ending.</p>
+  <div class="tbl"><table><tr><th></th><th>знать</th><th>чита^ть</th><th>жить</th><th>писа^ть</th></tr>
+  <tr><td class="lbl">я</td><td>зна<span class="end">^ю</span></td><td>чита<span class="end">^ю</span></td><td>жив<span class="end">у^</span></td><td>пиш<span class="end">у^</span></td></tr>
+  <tr><td class="lbl">ты</td><td>зна<span class="end">^ешь</span></td><td>чита<span class="end">^ешь</span></td><td>жив<span class="end">ёшь</span></td><td>пи^ш<span class="end">ешь</span></td></tr>
+  <tr><td class="lbl">он/она</td><td>зна<span class="end">^ет</span></td><td>чита<span class="end">^ет</span></td><td>жив<span class="end">ёт</span></td><td>пи^ш<span class="end">ет</span></td></tr>
+  <tr><td class="lbl">мы</td><td>зна<span class="end">^ем</span></td><td>чита<span class="end">^ем</span></td><td>жив<span class="end">ём</span></td><td>пи^ш<span class="end">ем</span></td></tr>
+  <tr><td class="lbl">вы</td><td>зна<span class="end">^ете</span></td><td>чита<span class="end">^ете</span></td><td>жив<span class="end">ёте</span></td><td>пи^ш<span class="end">ете</span></td></tr>
+  <tr><td class="lbl">они</td><td>зна<span class="end">^ют</span></td><td>чита<span class="end">^ют</span></td><td>жив<span class="end">у^т</span></td><td>пи^ш<span class="end">ут</span></td></tr></table></div>
+  <div class="note-box">After a vowel: <b>-ю / -ют</b>. After a consonant: <b>-у / -ут</b>. The infinitive is not your friend: <b>жить</b> and <b>писать</b> change their stems, so learn the я, ты and они forms.</div>`},
+ {t:"Verb conjugation: и type", pg:"pp. 110–111", h:`
+  <p><b>говори^ть</b> drops <b>-ить</b> and takes endings with <b>и</b>.</p>
+  <div class="tbl"><table><tr><th>я</th><th>ты</th><th>он/она</th><th>мы</th><th>вы</th><th>они</th></tr>
+  <tr><td>говор<span class="end">ю^</span></td><td>говор<span class="end">и^шь</span></td><td>говор<span class="end">и^т</span></td><td>говор<span class="end">и^м</span></td><td>говор<span class="end">и^те</span></td><td>говор<span class="end">я^т</span></td></tr></table></div>
+  <p class="ex">Ты говори^шь по-ру^сски? — Да, я говорю^ по-ру^сски.</p>`},
+ {t:"Spelling rules: 7 letters and 5 letters", pg:"p. 109", h:`
+  <p><b>7-letter rule.</b> After <b>к г х ж ш щ ч</b>, write <b>и</b>, never <b>ы</b>; and write <b>у, а</b>, not <b>ю, я</b>. That is why it's <span class="ex">пишу^</span> (not пишю) and <span class="ex">хоро^ших</span> (not хорошых).</p>
+  <p><b>5-letter rule.</b> After <b>ж ш щ ч ц</b>, write unstressed <b>е</b> instead of <b>о</b>. That is why it's <span class="ex">в хоро^шем</span> but <span class="ex">в большо^м</span> (stressed, so о stays).</p>`},
+ {t:"Past tense", pg:"pp. 113–115", h:`
+  <p>Take the infinitive, drop <b>-ть</b>, add <b>-л</b>. Then match the <b>gender and number of the subject</b>, not the person.</p>
+  <div class="tbl"><table><tr><th></th><th>знать</th><th>чита^ть</th><th>жить</th><th>говори^ть</th></tr>
+  <tr><td class="lbl">он, я (male)</td><td>зна^л</td><td>чита^л</td><td>жил</td><td>говори^л</td></tr>
+  <tr><td class="lbl">она, я (female)</td><td>зна^л<span class="end">а</span></td><td>чита^л<span class="end">а</span></td><td>жил<span class="end">а^</span></td><td>говори^л<span class="end">а</span></td></tr>
+  <tr><td class="lbl">оно</td><td>зна^л<span class="end">о</span></td><td>чита^л<span class="end">о</span></td><td>жи^л<span class="end">о</span></td><td>говори^л<span class="end">о</span></td></tr>
+  <tr><td class="lbl">мы, вы, они</td><td>зна^л<span class="end">и</span></td><td>чита^л<span class="end">и</span></td><td>жи^л<span class="end">и</span></td><td>говори^л<span class="end">и</span></td></tr></table></div>
+  <div class="note-box"><b>вы</b> always takes <b>-ли</b>, even when talking to one person. <b>жить</b> has end stress in the feminine: жила^.</div>`},
+ {t:"Word order: adverbs", pg:"p. 117", h:`
+  <p>Adverbs like <b>хорошо, пло^хо, бы^стро, свобо^дно</b> usually come <b>before the verb</b>.</p>
+  <p class="ex">Я хорошо^ говорю^ по-ру^сски. · Он о^чень бы^стро чита^ет.</p>
+  <p>When answering <b>как?</b> (how?), the adverb moves to the end, because it's the new information: <span class="ex">— Как вы говори^те по-ру^сски? — Я говорю^ хорошо^.</span></p>`},
+ {t:"Talking about languages", pg:"pp. 117–119", h:`
+  <div class="tbl"><table><tr><th>With these verbs</th><th>use</th><th>example</th></tr>
+  <tr><td class="lbl">говори^ть, чита^ть, писа^ть, понима^ть</td><td>по-ру^сски</td><td>Я понима^ю по-ру^сски.</td></tr>
+  <tr><td class="lbl">знать, изуча^ть</td><td>ру^сский язы^к</td><td>Я зна^ю ру^сский язы^к.</td></tr></table></div>
+  <div class="note-box">Keep them apart: <b>по-ру^сски</b> never takes язык, and <b>ру^сский язы^к</b> never takes по-. Questions: <span class="ex">На како^м языке^ вы говори^те?</span> (which language) · <span class="ex">На каки^х языка^х?</span> (which languages) · <span class="ex">Како^й язы^к вы зна^ете?</span></div>`},
+ {t:"Nationalities", pg:"pp. 120–122", h:`
+  <div class="tbl"><table><tr><th>Pattern</th><th>он</th><th>она</th><th>они</th></tr>
+  <tr><td class="lbl">-ец / -ка / -цы</td><td>америка^нец</td><td>америка^нка</td><td>америка^нцы</td></tr>
+  <tr><td class="lbl">(also)</td><td>кана^дец, кита^ец, не^мец</td><td>кана^дка, китая^нка (!), не^мка</td><td>кана^дцы, кита^йцы, не^мцы</td></tr>
+  <tr><td class="lbl">-ин / -нка / -не</td><td>англича^нин, армяни^н, россия^нин</td><td>англича^нка, армя^нка, россия^нка</td><td>англича^не, армя^не, россия^не</td></tr>
+  <tr><td class="lbl">no -ец</td><td>ара^б, каза^х, францу^з</td><td>ара^бка, каза^шка, францу^женка</td><td>ара^бы, каза^хи, францу^зы</td></tr>
+  <tr><td class="lbl">adjective</td><td>ру^сский</td><td>ру^сская</td><td>ру^сские</td></tr></table></div>
+  <div class="note-box"><b>ру^сский</b> is ethnicity and culture; <b>россия^нин</b> is a citizen of Russia. Nationalities are <b>not capitalised</b>; countries are. Alone, use the noun (Грета — не^мка); with another noun, use the adjective (неме^цкий студе^нт).</div>`},
+ {t:"Prepositional case", pg:"pp. 124–126", h:`
+  <p>After <b>в / на</b> (where?) and <b>о / об</b> (about what?). Modifiers and nouns must agree.</p>
+  <div class="tbl"><table><tr><th>Nouns</th><th>Masc. &amp; neuter</th><th>Feminine</th><th>Plural</th></tr>
+  <tr><td class="lbl">hard</td><td>в журна^л<span class="end">е</span>, в письм<span class="end">е^</span></td><td>в шко^л<span class="end">е</span></td><td>в журна^л<span class="end">ах</span>, в шко^л<span class="end">ах</span></td></tr>
+  <tr><td class="lbl">soft</td><td>в музе^<span class="end">е</span>, в словар<span class="end">е^</span></td><td>в ку^хн<span class="end">е</span></td><td rowspan="3">в музе^<span class="end">ях</span>, в тетра^д<span class="end">ях</span>, в общежи^ти<span class="end">ях</span></td></tr>
+  <tr><td class="lbl">fem. -ь</td><td>—</td><td>в тетра^д<span class="end">и</span></td></tr>
+  <tr><td class="lbl">-ие / -ия</td><td>в общежи^ти<span class="end">и</span></td><td>в ве^рси<span class="end">и</span></td></tr></table></div>
+  <div class="tbl"><table><tr><th>Adjectives</th><th>Masc. &amp; neuter</th><th>Feminine</th><th>Plural</th></tr>
+  <tr><td class="lbl">hard (-ый)</td><td>в но^в<span class="end">ом</span></td><td>в но^в<span class="end">ой</span></td><td>в но^в<span class="end">ых</span></td></tr>
+  <tr><td class="lbl">soft (-ий)</td><td>в си^н<span class="end">ем</span></td><td>в си^н<span class="end">ей</span></td><td>в си^н<span class="end">их</span></td></tr>
+  <tr><td class="lbl">spelling rules</td><td>в хоро^ш<span class="end">ем</span> (but в больш<span class="end">о^м</span>)</td><td>в хоро^ш<span class="end">ей</span></td><td>в хоро^ш<span class="end">их</span></td></tr></table></div>
+  <div class="tbl"><table><tr><th>Special modifiers</th><th>Masc. &amp; neuter</th><th>Feminine</th><th>Plural</th></tr>
+  <tr><td class="lbl">мой, твой</td><td>в моём, в твоём</td><td>в мое^й, в твое^й</td><td>в мои^х, в твои^х</td></tr>
+  <tr><td class="lbl">наш, ваш</td><td>в на^шем, в ва^шем</td><td>в на^шей, в ва^шей</td><td>в на^ших, в ва^ших</td></tr>
+  <tr><td class="lbl">чей</td><td>в чьём</td><td>в чьей</td><td>в чьих</td></tr>
+  <tr><td class="lbl">э^тот</td><td>в э^том</td><td>в э^той</td><td>в э^тих</td></tr>
+  <tr><td class="lbl">оди^н</td><td>в одно^м</td><td>в одно^й</td><td>в одни^х</td></tr></table></div>
+  <div class="note-box"><b>о</b> becomes <b>об</b> before а, э, и, о, у: <span class="ex">об иностра^нных языка^х, об отце^</span>. <b>мать</b> becomes <span class="ex">о ма^тери</span>.</div>`},
+ {t:"Conjunctions и, а, но", pg:"pp. 129–131", h:`
+  <div class="tbl"><table><tr><th></th><th>Use it when</th><th>Example</th></tr>
+  <tr><td>и</td><td class="lbl">the two things are the same, or just listed</td><td>Макси^м живёт и рабо^тает в Москве^.</td></tr>
+  <tr><td>а</td><td class="lbl">two different things are compared; also "and what about…?"</td><td>А^нна изуча^ет ру^сский язы^к, а Ли^за изуча^ет англи^йский.</td></tr>
+  <tr><td>но</td><td class="lbl">"but": the second part goes against what you'd expect</td><td>А^нна изуча^ет ру^сский язы^к, но ещё пло^хо говори^т.</td></tr></table></div>
+  <p class="ex">— Я хорошо^ говорю^ по-ру^сски. — А по-англи^йски?</p>`}
+];
+
+/* ---------- state + persistence ---------- */
+const KEY="tetrad-u3-v1";
+const blank = () => ({known:{}, quizzes:{}, days:[], updated:0});
+let state = blank();
+try { const raw = localStorage.getItem(KEY); if (raw) state = Object.assign(blank(), JSON.parse(raw)); } catch(e){}
+let dbRef=null, writing=false, pendingWrite=false, writeTimer=null;
+function merge(a,b){
+  const out = blank();
+  const decks = new Set([...Object.keys(a.known||{}),...Object.keys(b.known||{})]);
+  decks.forEach(d => out.known[d] = [...new Set([...(a.known?.[d]||[]),...(b.known?.[d]||[])])]);
+  const qs = new Set([...Object.keys(a.quizzes||{}),...Object.keys(b.quizzes||{})]);
+  qs.forEach(q => { const x=a.quizzes?.[q]||{}, y=b.quizzes?.[q]||{};
+    const newer = (x.at||0) >= (y.at||0) ? x : y;
+    out.quizzes[q] = {best:Math.max(x.best||0,y.best||0), last:newer.last||0, at:newer.at||0, n:Math.max(x.n||0,y.n||0)}; });
+  out.days = [...new Set([...(a.days||[]),...(b.days||[])])].sort().slice(-120);
+  out.updated = Math.max(a.updated||0,b.updated||0);
+  return out;
+}
+function save(){
+  state.updated = Date.now();
+  try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){}
+  if (!dbRef) return;
+  clearTimeout(writeTimer); writeTimer = setTimeout(flush, 1200);
+}
+async function flush(){
+  if (!dbRef) return;
+  if (writing){ pendingWrite=true; return; }
+  writing=true;
+  try { await dbRef.set(JSON.parse(JSON.stringify(state))); setSync(true); }
+  catch(e){ if (e && e.code==="invalid_argument") { dbRef=null; setSync(false); } }
+  writing=false;
+  if (pendingWrite){ pendingWrite=false; flush(); }
+}
+function setSync(ok){ $("#sync").textContent = ok ? "Progress is saved to your account, so it follows you between devices." : "Progress is saved in this browser."; }
+function markDay(){ const t=today(); if (!state.days.includes(t)) state.days.push(t); }
+(async () => {
+  try {
+    if (!window.claude || !window.claude.use) return;
+    const [db,user] = await Promise.all([window.claude.use("db"), window.claude.use("user")]);
+    if (!db || !user) return;
+    const uid = await user.id(); if (!uid) return;
+    const ref = db.doc("data/users/"+uid+"/progress");
+    const snap = await ref.get();
+    dbRef = ref;
+    if (snap.exists){ state = merge(state, snap.data()); try{localStorage.setItem(KEY, JSON.stringify(state));}catch(e){} render(); }
+    setSync(true);
+    if (!snap.exists && (state.days.length || Object.keys(state.quizzes).length)) flush();
+  } catch(e) { /* stays on browser storage */ }
+})();
+
+/* ---------- progress maths ---------- */
+const deckPct = d => { const k = (state.known[d.id]||[]).filter(x => d.items.some(it=>P(it[0])===x)).length; return {k, n:d.items.length, p: Math.round(100*k/d.items.length)}; };
+const QUIZZES = [
+ {id:"vocab", ru:"Слова^", en:"Vocabulary", d:"Translate chapter words, Russian to English and back."},
+ {id:"conj", ru:"Спряже^ние", en:"Present tense", d:"Pick the right form of говорить, жить, писать and the rest."},
+ {id:"past", ru:"Проше^дшее вре^мя", en:"Past tense", d:"Match -л, -ла, -ли to the subject."},
+ {id:"nat", ru:"Национа^льность", en:"Nationalities", d:"он, она, они and the adjective for each country."},
+ {id:"lang", ru:"По-ру^сски и́ли ру^сский язы^к", en:"Talking about languages", d:"Choose по-… or … язык to fit the verb."},
+ {id:"prep", ru:"Предло^жный паде^ж", en:"Prepositional case", d:"Put the phrase after в, на or о. Includes your 1,000-example list."},
+ {id:"prep2", ru:"Предло^жный: два сло^ва", en:"Prepositional: adjective + noun", d:"Change both words yourself: pick the adjective ending, then the noun ending."},
+ {id:"conjn", ru:"И, а, но", en:"Conjunctions", d:"Pick the conjunction that fits the meaning."},
+ {id:"mixed", ru:"Контро^льная", en:"Chapter test", d:"Ten questions drawn from every topic above.", test:true}
+];
+const grade = p => p>=90?[5,"отли^чно"]:p>=75?[4,"хорошо^"]:p>=55?[3,"удовлетвори^тельно"]:[2,"неудовлетвори^тельно"];
+
+/* ---------- question generators ---------- */
+function optsFrom(correct, pool, n=3){
+  const c = P(correct); const seen=new Set([c]); const out=[];
+  for (const x of shuffle(pool)){ const px=P(x); if(!seen.has(px)){seen.add(px); out.push(x);} if(out.length>=n) break; }
+  return shuffle([correct, ...out]);
+}
+const GEN = {
+ vocab(){
+  const deck = pick(DECKS.filter(d=>d.items.length>=4)); const it = pick(deck.items);
+  if (Math.random()<.5) return {k:"What does this mean?", q:S(it[0]), opts:optsFrom(it[1], deck.items.map(i=>i[1])), a:it[1], ex:it[2]?S(it[2]):"", ru:false};
+  return {k:"How do you say this in Russian?", q:esc(it[1]), opts:optsFrom(it[0], deck.items.map(i=>i[0])), a:it[0], ex:it[2]?S(it[2]):"", ru:true};
+ },
+ conj(){
+  const v = pick(VERBS); const pi = Math.floor(Math.random()*PRON.length); const f = v.f[PIDX[pi]];
+  const pron = PRON[pi]; const P0 = pron[0].toUpperCase()+pron.slice(1);
+  return {k:`Fill in the present tense of ${S(v.inf)}`, q:`${P0} <span class="blank">___</span> ${S(v.tail)}.`, opts:optsFrom(f, v.f), a:f, ru:true,
+    ex:`${S(v.inf)}: ${S(v.type)}. ${S(v.f[0])}, ${S(v.f[1])} … ${S(v.f[5])}.`};
+ },
+ past(){
+  const v = pick(VERBS); const [subj,g] = pick(PAST_SUBJ); const forms = pastForms(v);
+  const a = g==="m"?forms[0]:g==="f"?forms[1]:forms[3];
+  const why = g==="m"?"masculine subject, so -л":g==="f"?"feminine subject, so -ла":"plural subject, so -ли";
+  return {k:`Fill in the past tense of ${S(v.inf)}`, q:`${S(subj)} <span class="blank">___</span> ${S(PAST_TAIL[v.inf])}.`, opts:shuffle(forms), a, ru:true, ex:`${S(subj)}: ${why}.`};
+ },
+ nat(){
+  const n = pick(NAT); const kind = Math.floor(Math.random()*4);
+  const lab = ["Он","Она^","Они^","Adjective"][kind];
+  const a = n[kind+1];
+  const others = NAT.filter(x=>x!==n).map(x=>x[kind+1]);
+  const sib = n.slice(1).filter(x=>P(x)!==P(a));
+  const pool = [pick(sib), ...shuffle(others).slice(0,2)];
+  const q = kind<3 ? `${S(lab)} — <span class="blank">___</span>` : `<span class="blank">___</span> язы^к / студе^нт`;
+  return {k: kind<3 ? `${n[0]}: ${["he is","she is","they are"][kind]}…` : `${n[0]}: the adjective`, q:S(q), opts:shuffle([a,...pool]), a, ru:true,
+    ex:`${n[0]}: ${S(n[1])} / ${S(n[2])} / ${S(n[3])} · ${S(n[4])}`};
+ },
+ lang(){
+  const [s,t] = pick(LANG_S); const L = pick(LANGS);
+  const adv = L[1], lang = L[0]+" язы^к";
+  const a = t==="adv"?adv:lang;
+  const opts = shuffle([adv, lang, adv+" язы^к", L[0]]);
+  return {k:`Fill in "${L[2]}"`, q:S(s.replace("___",'<span class="blank">___</span>')), opts, a, ru:true,
+    ex: t==="adv" ? "говорить, читать, писать and понимать take по-… with no язык." : "знать and изучать take the adjective + язык."};
+ },
+ prep(){
+  let nom, pr, en, src;
+  if (Math.random()<.55){ [nom,pr,en] = pick(PREP_CH); src="chapter"; }
+  else { const e = pick(PREP_XLSX.e.filter(x=>x[3]!==3 && x[3]!==14)); [nom,pr,en]=e; src=PREP_XLSX.s[e[3]].replace(/\s*\(\d+\)\s*$/,""); }
+  const prep = P(pr).split(" ")[0];
+  const a = P(pr);
+  return {k:`Put it in the prepositional: ${esc(en)}`, q:`${prep} + ${esc(P(nom))}`, opts:prepOpts(a, P(nom), prep), a, ru:true,
+    ex: src==="chapter" ? "From the chapter's vocabulary." : `From your 1,000-example list: ${esc(src)}.`};
+ },
+ prep2(){
+  let nom, pr, en, src;
+  const two = x => P(x[0]).split(" ").length===2 && P(x[1]).split(" ").length===3;
+  if (Math.random()<.35){ [nom,pr,en] = pick(PREP_CH.filter(two)); src="From the chapter's vocabulary."; }
+  else { const e = pick(PREP_XLSX.e.filter(x=>x[3]!==3 && x[3]!==14 && two(x))); [nom,pr,en]=e; src=`From your 1,000-example list: ${esc(PREP_XLSX.s[e[3]].replace(/\s*\(\d+\)\s*$/,""))}.`; }
+  const [prep, adjA, nounA] = P(pr).split(" ");
+  const [adjN, nounN] = P(nom).split(" ");
+  return {two:true, k:`Change both words: ${esc(en)}`, q:`${prep} + ${esc(P(nom))}`, prep, adjA, nounA,
+    adjOpts: adjOpts(adjA, adjN), nounOpts: nounOpts(nounA, nounN), a:P(pr), opts:[], ru:true, ex:src};
+ },
+ conjn(){
+  const [s,a,why] = pick(CONJ);
+  return {k:"и, а or но?", q:S(s.replace("___",'<span class="blank">___</span>')), opts:["и","а","но"], a, ru:true, ex:S(why)};
+ }
+};
+function fill4(correct, cands){
+  const out=[correct]; for (const c of shuffle([...new Set(cands)])) { if (out.length>=4) break; if (c && c!==correct && !out.includes(c)) out.push(c); }
+  return shuffle(out);
+}
+const badSpell = w => /[кгхжшщч]ы|[кгхжшщчц][яю]|[аеёиоуыэюя]ы|оо|[жшщч]о[йм]$/.test(w);
+function adjOpts(a, nomA){
+  // distractors are real prepositional forms of the same adjective (other gender / number) plus the nominative
+  const m = a.match(/^(.*?)(ом|ем|ём|ой|ей|ых|их)$/); if (!m) return fill4(a,[nomA]);
+  const st = m[1], e = m[2];
+  let set;
+  if (e==="ём" || /^(мо|тво|сво)$/.test(st)) set = ["ём","ей","их"];
+  else if (/^(эт|т)$/.test(st)) set = ["ом","ой","их"];
+  else if (/ой$/.test(nomA)) set = ["ом","ой", /[кгхжшщч]$/.test(st)?"их":"ых"];
+  else if (e==="ом" || e==="ой" || e==="ых" || /[кгх]$/.test(st)) set = ["ом","ой", /[кгхжшщч]$/.test(st)?"их":"ых"];
+  else set = ["ем","ей","их"];
+  return fill4(a, [nomA, ...set.map(x=>st+x)]);
+}
+function nounOpts(n, nomN){
+  // likely mistakes: wrong prepositional ending, plural for singular, or no change at all
+  const m = n.match(/^(.*?)(ии|ах|ях|е|и|у)$/); if (!m) return fill4(n,[nomN]);
+  const st = m[1];
+  const ends = m[2]==="ии" ? ["ии","ие","иях"] : ["е","и","у","ах","ях"];
+  return fill4(n, [nomN, ...ends.map(e=>st+e).filter(w=>!badSpell(w) && !/[иь][ау]/.test(w.slice(st.length-1)))]);
+}
+function prepOpts(ans, nom, prep){
+  const words = ans.split(" "); const head = words[0]; const body = words.slice(1);
+  const nounRules = [[/е$/,"и"],[/и$/,"е"],[/е$/,"у"],[/ах$/,"ях"],[/ях$/,"ах"],[/ах$/,"е"],[/ях$/,"и"],[/и$/,"ии"],[/ии$/,"ие"]];
+  const adjRules = [[/ом$/,"ой"],[/ой$/,"ом"],[/ем$/,"ом"],[/ей$/,"ой"],[/ых$/,"ой"],[/их$/,"ых"],[/ом$/,"ым"],[/ем$/,"ей"],[/ей$/,"ем"],[/ём$/,"ей"],[/ей$/,"ём"]];
+  const cands = new Set();
+  const last = body.length-1;
+  for (const [re,to] of nounRules) if (re.test(body[last])) { const b=body.slice(); b[last]=b[last].replace(re,to); cands.add([head,...b].join(" ")); }
+  if (body.length>1) for (const [re,to] of adjRules) if (re.test(body[0])) {
+    const b=body.slice(); b[0]=b[0].replace(re,to); cands.add([head,...b].join(" "));
+    for (const [re2,to2] of nounRules) if (re2.test(b[last])) { const c=b.slice(); c[last]=c[last].replace(re2,to2); cands.add([head,...c].join(" ")); }
+  }
+  cands.add(prep+" "+nom);
+  cands.delete(ans);
+  let pool = shuffle([...cands]).slice(0,3);
+  while (pool.length<3){ const e = pick(PREP_XLSX.e); if (P(e[1])!==ans && !pool.includes(e[1])) pool.push(e[1]); }
+  return shuffle([ans, ...pool]);
+}
+
+/* ================= Урок 2 · Что у меня есть? ================= */
+const DECKS2 = [
+ {id:"c2-things", ru:"Вещи", en:"Things", items:[
+  ["вещь","thing","fem."],["газе^та","newspaper",""],["гра^дус","degree",""],["дождь","rain","masc."],["докуме^нт","document, ID",""],
+  ["дом","home, apartment building","pl. дома^"],["доска^","blackboard",""],["журна^л","magazine",""],["календа^рь","calendar","masc."],
+  ["каранда^ш","pencil","pl. карандаши^"],["кни^га","book",""],["ко^мната","room",""],["крова^ть","bed","fem."],["ку^ртка","jacket",""],
+  ["мел","chalk",""],["ме^сто","place",""],["мо^ре","sea",""],["музе^й","museum",""],["оде^жда","clothing",""],["окно^","window","pl. о^кна"],
+  ["очки^","glasses","pl. only"],["пла^тье","dress",""],["пого^да","weather",""],["па^спорт","passport","pl. паспорта^"],
+  ["пи^сьменный стол","desk",""],["письмо^","letter","pl. пи^сьма"],["пода^рок","gift","pl. пода^рки"],["ру^чка","pen",""],
+  ["рюкза^к","backpack","pl. рюкзаки^"],["слова^рь","dictionary","masc.; pl. словари^"],["снег","snow",""],["со^лнце","sun",""],
+  ["стена^","wall",""],["сюрпри^з","surprise",""],["та^почки","slippers","pl."],["температу^ра","temperature",""],["тетра^дь","notebook","fem."],
+  ["у^лица","street",""],["уче^бник","textbook",""],["футбо^лка","t-shirt",""],["часы^","clock, watch","pl."],["чемода^н","suitcase",""],
+  ["шкаф","cabinet; closet","в шкафу^"],["шко^ла","school",""]]},
+ {id:"c2-people", ru:"Лю^ди", en:"People & animals", items:[
+  ["де^вушка","girl; woman",""],["дочь","daughter","fem."],["ко^шка","cat","masc. кот, pl. коты^"],["ма^ма","mom",""],["па^па","dad","masculine!"],
+  ["семья^","family",""],["соба^ка","dog",""],["сын","son",""],["класс","grade, year (in school)",""],["кли^мат","climate",""]]},
+ {id:"c2-tech", ru:"Те^хника", en:"Gadgets", items:[
+  ["видеока^мера","video camera",""],["компью^тер","computer",""],["маши^на","car",""],["ноутбу^к","notebook computer",""],
+  ["микрофо^н","microphone",""],["при^нтер","printer",""],["телеви^зор","television",""],["телефо^н","telephone",""],
+  ["моби^льный телефо^н (моби^льник)","mobile phone",""],["фотоаппара^т","camera",""],["фотогра^фия","photo",""]]},
+ {id:"c2-pron", ru:"Местоиме^ния", en:"Pronouns & possessives", items:[
+  ["он","he, it",""],["она^","she, it",""],["оно^","it",""],["они^","they",""],["э^то","this is, that is, these are",""],
+  ["чей (чьё, чья, чьи)","whose",""],["мой (моё, моя^, мои^)","my",""],["твой (твоё, твоя^, твои^)","your (informal)",""],
+  ["наш (на^ше, на^ша, на^ши)","our",""],["ваш (ва^ше, ва^ша, ва^ши)","your (formal or plural)",""],["её","her",""],["его^","his",""],["их","their",""],
+  ["како^й (како^е, кака^я, каки^е)","what, which",""]]},
+ {id:"c2-adj", ru:"Прилага^тельные", en:"Adjectives", items:[
+  ["америка^нский","American",""],["большо^й","large",""],["(не)интере^сный","(un)interesting",""],["(не)краси^вый","pretty (ugly)",""],
+  ["ма^ленький","small",""],["но^вый","new",""],["плохо^й","bad",""],["ру^сский","Russian",""],["ста^рый","old",""],["тропи^ческий","tropical",""],
+  ["хоро^ший","good",""],["э^тот (э^то, э^та, э^ти)","this",""]]},
+ {id:"c2-colors", ru:"Цвета^", en:"Colors", items:[
+  ["бе^жевый","beige",""],["бе^лый","white",""],["голубо^й","light blue",""],["жёлтый","yellow",""],["зелёный","green",""],["кори^чневый","brown",""],
+  ["кра^сный","red",""],["ора^нжевый","orange",""],["ро^зовый","pink",""],["се^рый","gray",""],["си^ний","dark blue","soft: си^няя, си^нее, си^ние"],
+  ["фиоле^товый","purple",""],["чёрный","black",""]]},
+ {id:"c2-weather", ru:"Пого^да", en:"Weather & adverbs", items:[
+  ["жа^рко","hot",""],["наве^рное","probably",""],["о^блачно","cloudy",""],["прохла^дно","cool",""],["ско^ро","soon",""],["там","there",""],
+  ["тепло^","warm",""],["то^лько","only",""],["тут","here",""],["хо^лодно","cold",""]]},
+ {id:"c2-time", ru:"Ме^сяцы", en:"Months & seasons", items:[
+  ["весно^й","in the spring",""],["зимо^й","in the winter",""],["ле^том","in the summer",""],["о^сенью","in the fall",""],
+  ["янва^рь","January","в январе^"],["февра^ль","February","в феврале^"],["март","March","в ма^рте"],["апре^ль","April","в апре^ле"],
+  ["май","May","в ма^е"],["ию^нь","June","в ию^не"],["ию^ль","July","в ию^ле"],["а^вгуст","August","в а^вгусте"],
+  ["сентя^брь","September","в сентябре^"],["октя^брь","October","в октябре^"],["ноя^брь","November","в ноябре^"],["дека^брь","December","в декабре^"]]},
+ {id:"c2-phrases", ru:"Выраже^ния", en:"Words & phrases", items:[
+  ["Бу^дьте как до^ма!","Make yourself at home!",""],["бу^дем","we will be",""],["Вот …","Here is …",""],["Всё.","That's all.",""],
+  ["Есть …?","Is there …? Are there …?",""],["Интере^сно…","I wonder …",""],["Как там на у^лице?","What's it like outside?",""],
+  ["Как ты?","How are you? (informal)",""],["Кака^я пого^да?","What's the weather like?",""],["Молоде^ц!","Well done!",""],["нет","no",""],
+  ["ну","well …",""],["Ой!","Oh!",""],["Пожа^луйста.","Please; You're welcome.",""],["Проходи^те.","Go on through.",""],
+  ["С прие^здом!","Welcome! (to someone from out of town)",""],["Сади^сь / Сади^тесь","Have a seat (informal / formal)",""],
+  ["Спаси^бо большо^е.","Thank you very much.",""],["У меня^ есть …","I have …",""],["У меня^ нет.","I don't have any of those.",""],
+  ["У вас есть …?","Do you have …? (formal)",""],["У тебя^ есть …?","Do you have …? (informal)",""],["Хорошо^.","Fine. Good.",""]]}
+];
+/* nouns for gender / agreement quizzes: word, gender (m f n pl), plural */
+const N2 = [
+ ["журна^л","m","журна^лы"],["газе^та","f","газе^ты"],["кни^га","f","кни^ги"],["ру^чка","f","ру^чки"],["рюкза^к","m","рюкзаки^"],["уче^бник","m","уче^бники"],
+ ["каранда^ш","m","карандаши^"],["слова^рь","m","словари^"],["тетра^дь","f","тетра^ди"],["музе^й","m","музе^и"],["окно^","n","о^кна"],["письмо^","n","пи^сьма"],
+ ["ме^сто","n","места^"],["пла^тье","n","пла^тья"],["мо^ре","n","моря^"],["дом","m","дома^"],["па^спорт","m","паспорта^"],["стена^","f","сте^ны"],
+ ["ко^мната","f","ко^мнаты"],["крова^ть","f","крова^ти"],["соба^ка","f","соба^ки"],["ку^ртка","f","ку^ртки"],["футбо^лка","f","футбо^лки"],
+ ["де^вушка","f","де^вушки"],["пода^рок","m","пода^рки"],["чемода^н","m","чемода^ны"],["компью^тер","m","компью^теры"],["маши^на","f","маши^ны"],
+ ["фотогра^фия","f","фотогра^фии"],["телефо^н","m","телефо^ны"],["шкаф","m","шкафы^"],["у^лица","f","у^лицы"],["шко^ла","f","шко^лы"],["ко^шка","f","ко^шки"],
+ ["вещь","f","ве^щи"],["календа^рь","m","календари^"],["со^лнце","n",""],["па^па","m","па^пы"],["ма^ма","f","ма^мы"],["дочь","f","до^чери"],["сын","m","сыновья^"],
+ ["телеви^зор","m","телеви^зоры"],["фотоаппара^т","m","фотоаппара^ты"],["ноутбу^к","m","ноутбу^ки"],["оде^жда","f",""],["очки^","pl",""],["часы^","pl",""],["та^почки","pl",""]
+];
+const POSS = [["my","мой","моя^","моё","мои^"],["your (informal)","твой","твоя^","твоё","твои^"],["our","наш","на^ша","на^ше","на^ши"],["your (formal)","ваш","ва^ша","ва^ше","ва^ши"],["whose?","чей","чья","чьё","чьи"]];
+const ADJ2 = [["new","но^вый"],["old","ста^рый"],["pretty","краси^вый"],["interesting","интере^сный"],["large","большо^й"],["good","хоро^ший"],["Russian","ру^сский"],
+ ["small","ма^ленький"],["dark blue","си^ний"],["light blue","голубо^й"],["white","бе^лый"],["black","чёрный"],["red","кра^сный"],["American","америка^нский"],["bad","плохо^й"],["yellow","жёлтый"]];
+function adjForms(a){ // returns [m,f,n,pl] nominative
+  const w = P(a), seven = s => /[кгхжшщч]$/.test(s);
+  let st, f;
+  if (/ой$/.test(w)){ st=w.slice(0,-2); f=[w, st+"ая", st+"ое", st+(seven(st)?"ие":"ые")]; }
+  else if (/ый$/.test(w)){ st=w.slice(0,-2); f=[w, st+"ая", st+"ое", st+"ые"]; }
+  else { st=w.slice(0,-2);
+    if (/[кгх]$/.test(st)) f=[w, st+"ая", st+"ое", st+"ие"];
+    else if (/[жшщч]$/.test(st)) f=[w, st+"ая", st+"ее", st+"ие"];
+    else f=[w, st+"яя", st+"ее", st+"ие"]; }
+  return f;
+}
+const GIDX = {m:0,f:1,n:2,pl:3}, GNAME = {m:"masculine",f:"feminine",n:"neuter",pl:"plural"};
+const KAKOY = [
+ ["___ э^то? — Э^то кни^га.","Что","Asking what a thing is: что."],["___ э^то кни^га? — Э^то но^вая кни^га.","Кака^я","Asking which or what kind: какой, agreeing with книга (fem.)."],
+ ["___ э^то слова^рь? — Ру^сский слова^рь.","Како^й","Asking what kind: какой, agreeing with словарь (masc.)."],["___ э^то пла^тье? — Краси^вое.","Како^е","Asking what kind: какое, agreeing with платье (neut.)."],
+ ["___ у тебя^ очки^? — Чёрные.","Каки^е","очки is plural, so какие."],["___ э^то? — Э^то мой па^спорт.","Что","The answer names the thing: что."],
+ ["___ у вас маши^на? — Ста^рая.","Кака^я","Asking what kind of car: какая (fem.)."],["___ э^то? — Э^то фотоаппара^т.","Что","The answer names the thing: что."],
+ ["___ пого^да? — Хоро^шая.","Кака^я","Кака^я пого^да? is the set phrase for asking about the weather."],["___ у тебя^ компью^тер? — Ноутбу^к.","Како^й","Asking which kind of computer: какой (masc.)."],
+ ["___ в чемода^не? — Оде^жда и кни^ги.","Что","Asking what is in the suitcase: что."],["___ у вас часы^? — Но^вые.","Каки^е","часы is plural, so какие."]
+];
+const ETO = [
+ ["___ кни^га интере^сная.","Э^та","\"This book is interesting\": the word modifies книга, so эта."],["___ — кни^га.","Э^то","\"This is a book\": это never changes."],
+ ["___ слова^рь но^вый.","Э^тот","\"This dictionary is new\": этот agrees with словарь."],["___ мой па^спорт.","Э^то","\"This is my passport\": это."],
+ ["___ очки^ ста^рые.","Э^ти","\"These glasses are old\": эти agrees with plural очки."],["___ мои^ часы^.","Э^то","\"These are my watches\": это stays the same even for plurals."],
+ ["___ ру^чка кра^сная.","Э^та","\"This pen is red\": эта."],["___ компью^тер мой.","Э^тот","\"This computer is mine\": этот."],
+ ["___ на^ши фотогра^фии.","Э^то","\"These are our photos\": это."],["___ та^почки твои^?","Э^ти","\"Are these slippers yours?\": эти agrees with тапочки."],
+ ["___ на^ша ко^мната.","Э^то","\"This is our room\": это."],["___ рюкза^к большо^й.","Э^тот","\"This backpack is big\": этот."]
+];
+const HAVE = [["I","У меня^"],["you (informal)","У тебя^"],["you (formal)","У вас"]];
+const HAVE_OBJ = ["па^спорт","маши^на","слова^рь","компью^тер","фотоаппара^т","соба^ка","ко^шка","уче^бник","телеви^зор","кни^га"];
+
+/* ================= Урок 4 · Образование ================= */
+const DECKS4 = [
+ {id:"c4-subjects", ru:"Предме^ты", en:"School subjects", items:[
+  ["американи^стика","American studies",""],["антрополо^гия","anthropology",""],["архитекту^ра","architecture",""],["биоло^гия","biology",""],
+  ["ге^ндерные иссле^дования","gender studies",""],["журнали^стика","journalism",""],["информа^тика","computer science",""],["иску^сство","art",""],
+  ["искусствове^дение","art history",""],["исто^рия","history",""],["коммуника^ция","communications",""],["компью^терная те^хника","computer science",""],
+  ["литерату^ра","literature",""],["матема^тика","mathematics",""],["ме^диа","media",""],["медици^на","medicine",""],
+  ["междунаро^дные отноше^ния","international affairs",""],["му^зыка","music",""],["музыкове^дение","music history",""],["педаго^гика","education (subject)",""],
+  ["политоло^гия","political science",""],["психоло^гия","psychology",""],["социоло^гия","sociology",""],["странове^дение (Росси^и)","(Russian) area studies",""],
+  ["фи^зика","physics",""],["филоло^гия","philology",""],["фина^нсы","finance",""],["филосо^фия","philosophy",""],["хи^мия","chemistry",""],
+  ["эконо^мика","economics",""],["юриспруде^нция","law",""]]},
+ {id:"c4-school", ru:"Учёба", en:"Studying & school life", items:[
+  ["аспиранту^ра","graduate school",""],["библиоте^ка","library",""],["докторанту^ра","doctoral program",""],["магистрату^ра","master's program",""],
+  ["зада^ние","assignment",""],["дома^шнее зада^ние","homework assignment",""],["дома^шние зада^ния","homework",""],["зачёт","quiz; pass",""],
+  ["институ^т","institute",""],["Институ^т иностра^нных языко^в","Institute of Foreign Languages",""],["ка^федра (на)","department",""],
+  ["ка^федра ру^сского языка^","Russian department",""],["курс (на)","course; year in university",""],["ле^кция (на)","lecture",""],["нау^ка","science; studies",""],
+  ["образова^ние","education",""],["вы^сшее образова^ние","higher education",""],["оши^бка","mistake",""],["рабо^та (на)","work; paper",""],
+  ["контро^льная рабо^та","test",""],["курсова^я рабо^та","term paper",""],["специа^льность","major","fem."],["статья^","article",""],["страни^ца","page",""],
+  ["уро^к","lesson",""],["де^лать уро^ки","to do homework (school)",""],["упражне^ние","exercise (in textbook)",""],["факульте^т (на)","department",""],["экза^мен","exam",""]]},
+ {id:"c4-grades", ru:"Оце^нки и лю^ди", en:"Grades & people", items:[
+  ["пятёрка","A grade","5"],["четвёрка","B grade","4"],["тро^йка","C grade","3"],["дво^йка","failing grade","2"],
+  ["диплома^т","diplomat",""],["иностра^нец / иностра^нка","foreigner",""],["полито^лог","political scientist",""],["преподава^тель","teacher in college",""],
+  ["сосе^д / сосе^дка","neighbor","pl. сосе^ди"],["сосе^д по ко^мнате","roommate",""],["учи^тель","teacher in school","pl. учителя^"]]},
+ {id:"c4-adj", ru:"Прилага^тельные", en:"Adjectives", items:[
+  ["бу^дущий","future",""],["второ^й","second",""],["госуда^рственный","state",""],["дома^шний","home",""],["европе^йский","European",""],
+  ["иностра^нный","foreign",""],["истори^ческий","historical",""],["ка^ждый","every; each",""],["люби^мый","favorite",""],["математи^ческий","math",""],
+  ["моско^вский","Moscow",""],["отли^чный","outstanding",""],["пе^рвый","first",""],["после^дний","last",""],["(не)пра^вильный","(in)correct",""],
+  ["(не)прия^тный","(un)pleasant",""],["пя^тый","fifth",""],["ску^чный","boring",""],["тре^тий (тре^тье, тре^тья, тре^тьи)","third",""],
+  ["(не)тру^дный","(not) difficult",""],["уче^бный","academic",""],["филологи^ческий","philological",""],["четвёртый","fourth",""],
+  ["экономи^ческий","economics",""],["юриди^ческий","judicial; legal",""]]},
+ {id:"c4-verbs", ru:"Глаго^лы", en:"Verbs", items:[
+  ["ду^мать","to think","ду^маю, ду^маешь, ду^мают"],["занима^ться","to do homework; to study","занима^юсь, занима^ешься, занима^ются"],
+  ["изуча^ть что","to study, take a subject","изуча^ю, изуча^ешь, изуча^ют"],["люби^ть","to like, to love","люблю^, лю^бишь, лю^бят"],
+  ["отвеча^ть","to answer","отвеча^ю, отвеча^ешь, отвеча^ют"],["переписа^ть","to rewrite","перепишу^, перепи^шешь, перепи^шут"],
+  ["рабо^тать","to work","рабо^таю, рабо^таешь, рабо^тают"],["сказа^ть","to say (future only)","скажу^, ска^жешь, ска^жут"],
+  ["спра^шивать","to ask","спра^шиваю, спра^шиваешь, спра^шивают"],["учи^ть","to study a subject; to memorize","учу^, у^чишь, у^чат"],
+  ["учи^ться","to study, be a student","учу^сь, у^чишься, у^чатся"]]},
+ {id:"c4-adverbs", ru:"Наре^чия", en:"Adverbs", items:[
+  ["дово^льно","quite; fairly",""],["ещё (не)","still (not yet)",""],["обы^чно","usually",""],["отли^чно","perfectly",""],["(не)пра^вильно","(in)correct",""],
+  ["(не)прия^тно","(un)pleasant(ly)",""],["ра^ньше","previously",""],["регуля^рно","regularly",""],["та^кже","also, too",""],["тепе^рь","now (as opposed to before)",""],
+  ["то^же","also, too",""],["уже^","already",""]]},
+ {id:"c4-small", ru:"Ма^ленькие слова^", en:"Prepositions & question words", items:[
+  ["в (+ prep.)","in, at",""],["на (+ prep.)","in, on, at",""],["и^ли","or",""],["как","how",""],["Как?","What do you mean?",""],
+  ["како^й","which; what (among options)",""],["Почему^?","why",""],["потому^ что","because",""],["что","that, what",""]]},
+ {id:"c4-phrases", ru:"Выраже^ния", en:"Words & phrases", items:[
+  ["Вот и всё.","That's it.",""],["Вот как?!","Really?!",""],["Всё","everything; That's all.",""],["коне^чно","of course",""],["мо^жет быть","maybe",""],
+  ["на како^м ку^рсе","in what year (of university)",""],["Посмотри^(те)!","Look!",""],["Что ска^жешь?","What do you have to say for yourself?",""],
+  ["Я не по^нял (поняла^).","I didn't catch (understand) that.",""],["Я получи^л(а).","I received.",""]]}
+];
+const PR6 = ["я","ты","он/она","мы","вы","они"];
+const STUDY_V = {
+ "учи^ться":["учу^сь","у^чишься","у^чится","у^чимся","у^читесь","у^чатся"],
+ "изуча^ть":["изуча^ю","изуча^ешь","изуча^ет","изуча^ем","изуча^ете","изуча^ют"],
+ "занима^ться":["занима^юсь","занима^ешься","занима^ется","занима^емся","занима^етесь","занима^ются"],
+ "учи^ть":["учу^","у^чишь","у^чит","у^чим","у^чите","у^чат"]
+};
+const STUDY_S = [ // sentence, person index, verb, why
+ ["Я ___ в университе^те.",0,"учи^ться","Being a student somewhere: учиться + где."],
+ ["Мы ___ ру^сский язы^к.",3,"изуча^ть","Taking a subject (direct object): изучать."],
+ ["Ве^чером я ___ в библиоте^ке.",0,"занима^ться","Doing homework, no subject named: заниматься."],
+ ["Она^ ___ хорошо^.",2,"учи^ться","Doing well in school: учиться + как."],
+ ["Студе^нты ___ исто^рию.",5,"изуча^ть","Taking a subject: изучать + accusative."],
+ ["Где вы ___? — В МГУ.",4,"учи^ться","Where someone goes to school: учиться."],
+ ["Ты ___ и^ли рабо^таешь?",1,"учи^ться","Are you in school or working: учиться."],
+ ["Они^ ___ ка^ждый день.",5,"занима^ться","Doing homework every day: заниматься."],
+ ["Он ___ фи^зику и хи^мию.",2,"изуча^ть","Taking subjects: изучать."],
+ ["Я ___ но^вые слова^.",0,"учи^ть","Memorising something: учить."],
+ ["Вы ___ до^ма и^ли в библиоте^ке?",4,"занима^ться","Where you do homework: заниматься."],
+ ["Моя^ сестра^ ___ на тре^тьем ку^рсе.",2,"учи^ться","Which year of university: учиться."]
+];
+const VERBS4 = [
+ {inf:"ду^мать", f:["ду^маю","ду^маешь","ду^мает","ду^маем","ду^маете","ду^мают"], tail:", что э^то интере^сно", type:"е-type, stem stress"},
+ {inf:"люби^ть", f:["люблю^","лю^бишь","лю^бит","лю^бим","лю^бите","лю^бят"], tail:"му^зыку", type:"и-type; adds л in the я form, shifting stress"},
+ {inf:"отвеча^ть", f:["отвеча^ю","отвеча^ешь","отвеча^ет","отвеча^ем","отвеча^ете","отвеча^ют"], tail:"пра^вильно", type:"е-type, stem stress"},
+ {inf:"рабо^тать", f:["рабо^таю","рабо^таешь","рабо^тает","рабо^таем","рабо^таете","рабо^тают"], tail:"в библиоте^ке", type:"е-type, stem stress"},
+ {inf:"спра^шивать", f:["спра^шиваю","спра^шиваешь","спра^шивает","спра^шиваем","спра^шиваете","спра^шивают"], tail:"преподава^теля", type:"е-type, stem stress"},
+ {inf:"учи^ть", f:["учу^","у^чишь","у^чит","у^чим","у^чите","у^чат"], tail:"но^вые слова^", type:"и-type, shifting stress; у after ч (spelling rule)"},
+ {inf:"учи^ться", f:["учу^сь","у^чишься","у^чится","у^чимся","у^читесь","у^чатся"], tail:"в университе^те", type:"и-type + -ся after consonants, -сь after vowels"},
+ {inf:"занима^ться", f:["занима^юсь","занима^ешься","занима^ется","занима^емся","занима^етесь","занима^ются"], tail:"в библиоте^ке", type:"е-type + -ся/-сь"},
+ {inf:"переписа^ть", f:["перепишу^","перепи^шешь","перепи^шет","перепи^шем","перепи^шете","перепи^шут"], tail:"курсову^ю рабо^ту", type:"like писать (future meaning)"}
+];
+const ACC = [ // subject + verb, nominative phrase, accusative phrase, English
+ ["Я чита^ю","интере^сная статья^","интере^сную статью^","an interesting article"],["Мы изуча^ем","ру^сская литерату^ра","ру^сскую литерату^ру","Russian literature"],
+ ["Она^ пи^шет","курсова^я рабо^та","курсову^ю рабо^ту","a term paper"],["Вы зна^ете","э^та кни^га","э^ту кни^гу","this book"],
+ ["Я люблю^","класси^ческая му^зыка","класси^ческую му^зыку","classical music"],["Они^ изуча^ют","америка^нская исто^рия","америка^нскую исто^рию","American history"],
+ ["Ты чита^ешь","на^ша газе^та","на^шу газе^ту","our newspaper"],["Он де^лает","дома^шнее зада^ние","дома^шнее зада^ние","the homework assignment"],
+ ["Студе^нты пи^шут","контро^льная рабо^та","контро^льную рабо^ту","a test"],["Я изуча^ю","европе^йская архитекту^ра","европе^йскую архитекту^ру","European architecture"],
+ ["Вы лю^бите","ру^сский язы^к","ру^сский язы^к","Russian (the language)"],["Мы чита^ем","но^вый уче^бник","но^вый уче^бник","the new textbook"],
+ ["Она^ лю^бит","моя^ специа^льность","мою^ специа^льность","my major"],["Он перепи^шет","пе^рвая страни^ца","пе^рвую страни^цу","the first page"],
+ ["Я зна^ю","твоя^ сестра^","твою^ сестру^","your sister"],["Они^ изуча^ют","иностра^нные языки^","иностра^нные языки^","foreign languages"],
+ ["Ты зна^ешь","на^ша преподава^тельница","на^шу преподава^тельницу","our teacher"],["Я люблю^","ру^сская ку^хня","ру^сскую ку^хню","Russian cuisine"],
+ ["Мы изуча^ем","мирова^я эконо^мика","мирову^ю эконо^мику","world economics"],["Она^ чита^ет","ста^рый журна^л","ста^рый журна^л","an old magazine"],
+ ["Студе^нты лю^бят","э^та ле^кция","э^ту ле^кцию","this lecture"],["Я пишу^","дли^нная статья^","дли^нную статью^","a long article"],
+ ["Вы изуча^ете","полити^ческая нау^ка","полити^ческую нау^ку","political science"],["Он лю^бит","си^няя ру^чка","си^нюю ру^чку","the dark blue pen"]
+];
+const VNA = [ // nominative, correct prepositional phrase, English
+ ["университе^т","в университе^те","at the university"],["факульте^т","на факульте^те","in the department"],["ка^федра","на ка^федре","in the department"],
+ ["ле^кция","на ле^кции","at the lecture"],["рабо^та","на рабо^те","at work"],["библиоте^ка","в библиоте^ке","at the library"],["институ^т","в институ^те","at the institute"],
+ ["пе^рвый курс","на пе^рвом ку^рсе","in first year"],["второ^й курс","на второ^м ку^рсе","in second year"],["тре^тий курс","на тре^тьем ку^рсе","in third year"],
+ ["четвёртый курс","на четвёртом ку^рсе","in fourth year"],["пя^тый курс","на пя^том ку^рсе","in fifth year"],["аспиранту^ра","в аспиранту^ре","in graduate school"],
+ ["шко^ла","в шко^ле","at school"],["класс","в кла^ссе","in class (school year)"],["магистрату^ра","в магистрату^ре","in the master's program"],
+ ["филологи^ческий факульте^т","на филологи^ческом факульте^те","in the philology department"],["экза^мен","на экза^мене","at the exam"],["уро^к","на уро^ке","in the lesson"],
+ ["бале^т","на бале^те","at the ballet"],["экономи^ческий факульте^т","на экономи^ческом факульте^те","in the economics department"],["общежи^тие","в общежи^тии","in the dorm"]
+];
+const PPRON = [["me","я","обо мне^"],["you (informal)","ты","о тебе^"],["him","он","о нём"],["her","она^","о ней"],["us","мы","о нас"],["you (formal)","вы","о вас"],["them","они^","о них"],["whom?","кто","о ком"],["what?","что","о чём"]];
+const PPRON_S = ["Они^ говоря^т ___.","Преподава^тель ду^мает ___.","Мы чита^ли ___ в газе^те.","Ма^ма спра^шивает ___.","Ты зна^ешь ___?"];
+
+/* ---------- generators for chapters 2 and 4 ---------- */
+Object.assign(GEN, {
+ "c2-vocab"(){ return vocabQ(DECKS2); },
+ "c4-vocab"(){ return vocabQ(DECKS4); },
+ "c2-gender"(){
+  const n = pick(N2); const pr = {m:"он",f:"она^",n:"оно^",pl:"они^"}[n[1]];
+  const why = {m:"masculine", f:"feminine", n:"neuter", pl:"plural"}[n[1]];
+  let rule = n[1]==="pl"?"It only exists in the plural.":/ь$/.test(P(n[0]))?"Words ending in -ь can be either gender, so this one has to be learned.":
+    P(n[0])==="папа"?"Words for male people are masculine even when they end in -а.":
+    {m:"It ends in a consonant or -й.", f:"It ends in -а or -я.", n:"It ends in -о or -е."}[n[1]] || "";
+  return {k:"Pick the pronoun", q:`Где ${S(n[0])}? — Вот <span class="blank">___</span>.`, opts:["он","она^","оно^","они^"], a:pr, ru:true, ex:`${S(n[0])} is ${why}. ${rule}`};
+ },
+ "c2-plural"(){
+  const n = pick(N2.filter(x=>x[2])); const sg=P(n[0]), pl=n[2];
+  const st = sg.replace(/[аяоеьй]$/,"");
+  const soft = /[ьйя]$/.test(sg) || /ие$|ье$/.test(sg);
+  const cands = [st+"ы", st+"и", sg, soft ? st+"я" : st+"а"];
+  if (sg==="подарок") cands.push("подароки");
+  const irr = {"дом":"Irregular: дома^.","паспорт":"Irregular: паспорта^.","сын":"Irregular: сыновья^.","дочь":"Irregular: до^чери.","подарок":"The о drops out: пода^рки.","место":"Neuter -о becomes -а.","море":"Neuter -е becomes -я.","шкаф":"Regular -ы, with end stress."};
+  const seven = /[кгхжшщч]$/.test(st);
+  const ex = irr[sg] || (seven ? `7-letter rule: after ${st.slice(-1)} write и, never ы.` : /[ое]$/.test(sg)?"Neuter nouns take -а / -я.":/[ья]$|[йь]$/.test(sg)?"Soft endings (-ь, -й, -я) take -и.":"Hard masculine and -а nouns take -ы.");
+  return {k:"Make it plural", q:`${S(n[0])} → <span class="blank">___</span>`, opts:fill4(pl, cands.filter(c=>P(c)!==P(pl))), a:pl, ru:true, ex:S(ex)};
+ },
+ "c2-poss"(){
+  const p = pick(POSS); const n = pick(N2); const a = p[1+GIDX[n[1]]];
+  return {k:`"${p[0]}" + noun`, q:`<span class="blank">___</span> ${S(n[0])}`, opts:p.slice(1), a, ru:true,
+    ex:`${S(n[0])} is ${GNAME[n[1]]}, so ${S(a)}. His, her and their (его, её, их) never change.`};
+ },
+ "c2-adj"(){
+  const [en, ad] = pick(ADJ2); const n = pick(N2); const forms = adjForms(ad); const a = forms[GIDX[n[1]]];
+  return {k:`"${en}" + noun`, q:`<span class="blank">___</span> ${S(n[0])}`, opts:forms, a, ru:true,
+    ex:`${S(n[0])} is ${GNAME[n[1]]}: ${forms.join(", ")}.`};
+ },
+ "c2-kakoy"(){
+  const [s,a,why] = pick(KAKOY);
+  return {k:"Что or какой?", q:S(s.replace("___",'<span class="blank">___</span>')), opts:fill4(a,["Что","Како^й","Кака^я","Како^е","Каки^е"]), a, ru:true, ex:S(why)};
+ },
+ "c2-eto"(){
+  const [s,a,why] = pick(ETO);
+  return {k:"Это or этот / эта / эти?", q:S(s.replace("___",'<span class="blank">___</span>')), opts:["Э^то","Э^тот","Э^та","Э^ти"], a, ru:true, ex:esc(S(why))};
+ },
+ "c2-have"(){
+  const [en,u] = pick(HAVE); const o = pick(HAVE_OBJ); const q = Math.random()<.5;
+  const opts = HAVE.map(h=>h[1]+(q?" есть "+o+"?":" есть "+o+"."));
+  const a = u+(q?" есть "+o+"?":" есть "+o+".");
+  const enS = q ? `Do ${en==="I"?"I":"you"} have …?` : `${en==="I"?"I have":"You have"} …`;
+  return {k:`${en}: ${enS}`, q:`(${esc(en)}) + ${S(o)}`, opts:shuffle([...opts, "Я есть "+o+(q?"?":".")]), a, ru:true,
+    ex:"Having is у меня / у тебя / у вас + есть. Never я есть."};
+ },
+ "c4-study"(){
+  const [s,pi,v,why] = pick(STUDY_S); const a = STUDY_V[v][pi];
+  const opts = Object.keys(STUDY_V).map(k=>STUDY_V[k][pi]);
+  return {k:"учиться, изучать, заниматься or учить?", q:S(s.replace("___",'<span class="blank">___</span>')), opts:shuffle(opts), a, ru:true, ex:S(why)};
+ },
+ "c4-conj"(){
+  const v = pick(VERBS4); const pi = Math.floor(Math.random()*6); const f = v.f[pi];
+  const pr = PR6[pi]==="он/она" ? pick(["он","она^"]) : PR6[pi];
+  const P0 = P(pr)[0].toUpperCase()+S(pr).slice(1);
+  return {k:`Fill in the present tense of ${S(v.inf)}`, q:`${P0} <span class="blank">___</span> ${S(v.tail).replace(/^, /,", ")}.`.replace(" ,", ","), opts:optsFrom(f, v.f), a:f, ru:true,
+    ex:`${S(v.inf)}: ${S(v.type)}. ${S(v.f[0])}, ${S(v.f[1])} … ${S(v.f[5])}.`};
+ },
+ "c4-acc"(){
+  const [sv, nom, acc, en] = pick(ACC);
+  const [adjN, nounN] = P(nom).split(" "); const [adjA, nounA] = P(acc).split(" ");
+  return {two:true, k:`Put the object in the accusative: ${esc(en)}`, q:`${S(sv)} + ${esc(P(nom))}`, prep:P(sv), adjA, nounA,
+    adjOpts: accAdjOpts(adjA, adjN), nounOpts: accNounOpts(nounA, nounN), a:P(sv)+" "+P(acc), opts:[], ru:true,
+    ex: adjA===adjN && nounA===nounN ? "Masculine inanimate, neuter and plural objects look exactly like the nominative." : "Feminine -а/-я becomes -у/-ю; feminine adjectives -ая/-яя become -ую/-юю."};
+ },
+ "c4-vna"(){
+  const [nom, pr, en] = pick(VNA); const w = P(pr).split(" "); const prep = w[0]; const other = prep==="на"?"в":"на";
+  const nomP = P(nom); const opts = [P(pr), other+" "+w.slice(1).join(" "), prep+" "+nomP, other+" "+nomP];
+  return {k:`Where? ${esc(en)}`, q:`<span class="blank">___</span> (${esc(nomP)})`, opts:shuffle(opts), a:P(pr), ru:true,
+    ex: prep==="на" ? "на is used with activities (лекция, работа, экзамен) and with факультет, кафедра and курс." : "в is the default for buildings and institutions."};
+ },
+ "c4-ppron"(){
+  const [en, nom, pr] = pick(PPRON); const s = pick(PPRON_S);
+  return {k:`About ${en}`, q:S(s.replace("___",'<span class="blank">___</span>')) + ` <span class="muted">(${esc(nom)})</span>`, opts:optsFrom(pr, PPRON.map(x=>x[2])), a:pr, ru:true,
+    ex:"Personal pronouns after о: обо мне, о тебе, о нём, о ней, о нас, о вас, о них; о ком? о чём?"};
+ }
+});
+function vocabQ(decks){
+  const deck = pick(decks.filter(d=>d.items.length>=4)); const it = pick(deck.items);
+  if (Math.random()<.5) return {k:"What does this mean?", q:S(it[0]), opts:optsFrom(it[1], deck.items.map(i=>i[1])), a:it[1], ex:it[2]?S(it[2]):"", ru:false};
+  return {k:"How do you say this in Russian?", q:esc(it[1]), opts:optsFrom(it[0], deck.items.map(i=>i[0])), a:it[0], ex:it[2]?S(it[2]):"", ru:true};
+}
+function accAdjOpts(a, nomA){
+  const sp = nomA.match(/^(мо|тво|наш|ваш|эт|одн)(а|я)$/);
+  if (sp){ const st=sp[1]; const soft=/^(мо|тво)$/.test(st);
+    return fill4(a, [nomA, st+(soft?"ю":"у"), st+(soft||/[шщжч]$/.test(st)?"ей":"ой"), {мо:"мой",тво:"твой",наш:"наш",ваш:"ваш",эт:"этот",одн:"один"}[st]]); }
+  const m = nomA.match(/^(.*?)(ая|яя|ый|ий|ой|ое|ее|ые|ие)$/); if (!m) return fill4(a,[nomA]);
+  const st = m[1]; const soft = /яя|ее$/.test(m[2]) || (m[2]==="ий" && !/[кгхжшщч]$/.test(st)) || (m[2]==="ие" && !/[кгхжшщч]$/.test(st));
+  const set = /^(мо|тво)$/.test(st) ? ["ю","я","ей","й"] : soft ? ["юю","яя","ей","ий"] : ["ую","ая","ой", /[кгхжшщч]$/.test(st)?"ий":"ый"];
+  return fill4(a, [nomA, ...set.map(e=>st+e)]);
+}
+function accNounOpts(n, nomN){
+  const st = nomN.replace(/[аяьй]$/,"").replace(/и$/,"");
+  const c = [nomN, st+"у", st+"ю", st+"е", st+"ы", st+"и"].filter(w=>!/[кгхжшщч]ы|[кгхжшщчц][яю]/.test(w));
+  return fill4(n, c);
+}
+
+const CHAPTERS = {
+ 2:{no:2, title:"Что у меня^ есть?", en:"What do I have? Things, colors, weather, and saying what you own.", pages:"pages 55–94", decks:DECKS2, gram:null,
+   quizzes:[
+    {id:"c2-vocab", ru:"Слова^", en:"Vocabulary", d:"Translate chapter words, Russian to English and back."},
+    {id:"c2-gender", ru:"Род", en:"Gender: он, она, оно, они", d:"Где словарь? — Вот он. Pick the pronoun for each noun."},
+    {id:"c2-plural", ru:"Мно^жественное число^", en:"Plurals", d:"Make nouns plural, minding the 7-letter rule."},
+    {id:"c2-poss", ru:"Мой, твой, наш, ваш", en:"Possessives", d:"Match мой / моя / моё / мои to the noun."},
+    {id:"c2-adj", ru:"Прилага^тельные", en:"Adjective endings", d:"новый / новая / новое / новые, plus soft and spelling-rule adjectives."},
+    {id:"c2-kakoy", ru:"Что и^ли како^й?", en:"Что vs какой", d:"Asking what something is versus what kind it is."},
+    {id:"c2-eto", ru:"Э^то и^ли э^тот?", en:"Это vs этот / эта / эти", d:"\"This is…\" versus \"this book…\"."},
+    {id:"c2-have", ru:"У меня^ есть", en:"Having", d:"у меня / у тебя / у вас есть."},
+    {id:"c2-mixed", ru:"Контро^льная", en:"Chapter test", d:"Ten questions drawn from every topic above.", test:true, mix:["c2-vocab","c2-gender","c2-plural","c2-poss","c2-adj","c2-kakoy","c2-eto","c2-have","c2-vocab","c2-adj"]}
+   ]},
+ 4:{no:4, title:"Образова^ние", en:"Education. Majors, school life, studying verbs and the accusative case.", pages:"pages 141–186", decks:DECKS4, gram:null,
+   quizzes:[
+    {id:"c4-vocab", ru:"Слова^", en:"Vocabulary", d:"Translate chapter words, Russian to English and back."},
+    {id:"c4-study", ru:"Учи^ться, изуча^ть, занима^ться", en:"The \"study\" verbs", d:"Pick the right study verb and form for each sentence."},
+    {id:"c4-conj", ru:"Спряже^ние", en:"Present tense", d:"любить, учиться, заниматься, спрашивать and the rest."},
+    {id:"c4-acc", ru:"Вини^тельный паде^ж", en:"Accusative: adjective + noun", d:"Change both words of the direct object yourself."},
+    {id:"c4-vna", ru:"В и^ли на?", en:"в or на + prepositional", d:"на факультете, в университете, на третьем курсе…"},
+    {id:"c4-ppron", ru:"Обо мне^, о тебе^", en:"Prepositional pronouns", d:"о ком? о чём? обо мне, о нём, о них…"},
+    {id:"c4-mixed", ru:"Контро^льная", en:"Chapter test", d:"Ten questions drawn from every topic above.", test:true, mix:["c4-vocab","c4-study","c4-conj","c4-acc","c4-vna","c4-ppron","c4-vocab","c4-study","c4-acc","c4-conj"]}
+   ]}
+};
+
+CHAPTERS[2].gram = [
+ {t:"Grammatical gender", pg:"", h:`
+  <div class="tbl"><table><tr><th></th><th>Ending</th><th>Examples</th><th>Pronoun</th></tr>
+  <tr><td class="lbl">masculine</td><td>consonant, -й, some -ь</td><td>журна^л, музе^й, слова^рь</td><td>он</td></tr>
+  <tr><td class="lbl">feminine</td><td>-а, -я, some -ь</td><td>газе^та, фотогра^фия, тетра^дь</td><td>она^</td></tr>
+  <tr><td class="lbl">neuter</td><td>-о, -е</td><td>окно^, пла^тье</td><td>оно^</td></tr>
+  <tr><td class="lbl">plural</td><td>-ы, -и, -а, -я</td><td>очки^, часы^</td><td>они^</td></tr></table></div>
+  <div class="note-box">Nouns in <b>-ь</b> must be learned one by one (слова^рь is masculine, тетра^дь is feminine). Male people are masculine even with -а: <span class="ex">па^па, де^душка</span>.</div>
+  <p class="ex">— Где слова^рь? — Вот <b>он</b>. · — Где фотогра^фия? — Вот <b>она^</b>.</p>`},
+ {t:"Nominative plural of nouns", pg:"", h:`
+  <div class="tbl"><table><tr><th></th><th>Singular</th><th>Plural</th></tr>
+  <tr><td class="lbl">hard masc. / -а</td><td>журна^л, газе^та</td><td>журна^л<span class="end">ы</span>, газе^т<span class="end">ы</span></td></tr>
+  <tr><td class="lbl">soft -й, -ь, -я</td><td>музе^й, слова^рь, тетра^дь, ле^кция</td><td>музе^<span class="end">и</span>, словар<span class="end">и^</span>, тетра^д<span class="end">и</span>, ле^кци<span class="end">и</span></td></tr>
+  <tr><td class="lbl">neuter -о / -е</td><td>окно^, пла^тье</td><td>о^кн<span class="end">а</span>, пла^ть<span class="end">я</span></td></tr>
+  <tr><td class="lbl">7-letter rule</td><td>кни^га, рюкза^к, каранда^ш</td><td>кни^г<span class="end">и</span>, рюкзак<span class="end">и^</span>, карандаш<span class="end">и^</span></td></tr></table></div>
+  <div class="note-box">Learn these individually: <span class="ex">дом → дома^, па^спорт → паспорта^, сын → сыновья^, дочь → до^чери, пода^рок → пода^рки</span>.</div>`},
+ {t:"Spelling rules: 7 letters and 5 letters", pg:"", h:`
+  <p><b>7-letter rule.</b> After <b>к г х ж ш щ ч</b>, write <b>и</b>, never <b>ы</b>; write <b>у, а</b>, never <b>ю, я</b>. So it's <span class="ex">кни^ги, ру^чки, хоро^шие</span>.</p>
+  <p><b>5-letter rule.</b> After <b>ж ш щ ч ц</b>, write unstressed <b>е</b>, not <b>о</b>. So it's <span class="ex">хоро^шее</span> but <span class="ex">большо^е</span> (stressed).</p>`},
+ {t:"Possessive modifiers", pg:"", h:`
+  <div class="tbl"><table><tr><th></th><th>он</th><th>она</th><th>оно</th><th>они</th></tr>
+  <tr><td class="lbl">whose?</td><td>чей</td><td>чья</td><td>чьё</td><td>чьи</td></tr>
+  <tr><td class="lbl">my</td><td>мой</td><td>моя^</td><td>моё</td><td>мои^</td></tr>
+  <tr><td class="lbl">your (inf.)</td><td>твой</td><td>твоя^</td><td>твоё</td><td>твои^</td></tr>
+  <tr><td class="lbl">our</td><td>наш</td><td>на^ша</td><td>на^ше</td><td>на^ши</td></tr>
+  <tr><td class="lbl">your (form.)</td><td>ваш</td><td>ва^ша</td><td>ва^ше</td><td>ва^ши</td></tr>
+  <tr><td class="lbl">his / her / their</td><td colspan="4">его^ · её · их (never change)</td></tr></table></div>
+  <p class="ex">— Чей э^то па^спорт? — Мой. · — Чья э^то ку^ртка? — Её.</p>`},
+ {t:"Nominative case of adjectives", pg:"", h:`
+  <div class="tbl"><table><tr><th></th><th>он</th><th>она</th><th>оно</th><th>они</th></tr>
+  <tr><td class="lbl">hard</td><td>но^в<span class="end">ый</span></td><td>но^в<span class="end">ая</span></td><td>но^в<span class="end">ое</span></td><td>но^в<span class="end">ые</span></td></tr>
+  <tr><td class="lbl">stressed end</td><td>больш<span class="end">о^й</span></td><td>больш<span class="end">а^я</span></td><td>больш<span class="end">о^е</span></td><td>больш<span class="end">и^е</span></td></tr>
+  <tr><td class="lbl">soft</td><td>си^н<span class="end">ий</span></td><td>си^н<span class="end">яя</span></td><td>си^н<span class="end">ее</span></td><td>си^н<span class="end">ие</span></td></tr>
+  <tr><td class="lbl">к г х</td><td>ру^сск<span class="end">ий</span></td><td>ру^сск<span class="end">ая</span></td><td>ру^сск<span class="end">ое</span></td><td>ру^сск<span class="end">ие</span></td></tr>
+  <tr><td class="lbl">ж ш щ ч</td><td>хоро^ш<span class="end">ий</span></td><td>хоро^ш<span class="end">ая</span></td><td>хоро^ш<span class="end">ее</span></td><td>хоро^ш<span class="end">ие</span></td></tr></table></div>`},
+ {t:"Что vs какой", pg:"", h:`
+  <p><b>Что</b> asks what a thing is. <b>Како^й</b> asks which one or what kind, and agrees with the noun like an adjective: како^й, кака^я, како^е, каки^е.</p>
+  <p class="ex">— Что э^то? — Э^то кни^га. · — Кака^я э^то кни^га? — Э^то ру^сская кни^га.</p>`},
+ {t:"Это vs этот, эта, это, эти", pg:"", h:`
+  <div class="tbl"><table><tr><th>Meaning</th><th>Form</th><th>Example</th></tr>
+  <tr><td class="lbl">"this is / these are" (a whole sentence)</td><td>э^то, never changes</td><td>Э^то мой слова^рь. · Э^то мои^ часы^.</td></tr>
+  <tr><td class="lbl">"this ___" (points at a noun)</td><td>э^тот, э^та, э^то, э^ти</td><td>Э^тот слова^рь но^вый. · Э^ти часы^ ста^рые.</td></tr></table></div>`},
+ {t:"Having: у меня есть", pg:"", h:`
+  <p class="ex">У меня^ есть маши^на. · У тебя^ есть соба^ка? · У вас есть па^спорт?</p>
+  <div class="note-box">Russian says "by me there is". Never <b>я есть</b>. To say you don't have any: <span class="ex">У меня^ нет.</span></div>`}
+];
+CHAPTERS[4].gram = [
+ {t:"Учиться: to be in school", pg:"p. 156", h:`
+  <div class="tbl"><table><tr><th>я</th><th>ты</th><th>он/она</th><th>мы</th><th>вы</th><th>они</th></tr>
+  <tr><td>уч<span class="end">у^сь</span></td><td>у^ч<span class="end">ишься</span></td><td>у^ч<span class="end">ится</span></td><td>у^ч<span class="end">имся</span></td><td>у^ч<span class="end">итесь</span></td><td>у^ч<span class="end">атся</span></td></tr></table></div>
+  <p>A regular и-verb plus <b>-ся</b> after a consonant and <b>-сь</b> after a vowel. Past: <span class="ex">учи^лся, учи^лась, учи^лись</span>. The 7-letter rule gives <b>учу^сь, у^чатся</b>, not учюсь, учятся.</p>
+  <p class="ex">— Вы у^читесь и^ли рабо^таете? — Я учу^сь.</p>`},
+ {t:"Prepositional case: на", pg:"p. 158", h:`
+  <p><b>на</b> means "on" (на столе^) and also "at / in" with activities and with some words you memorise.</p>
+  <div class="tbl"><table><tr><th>на + activity</th><th>на + memorise</th><th>в + most places</th></tr>
+  <tr><td>на ле^кции, на рабо^те, на бале^те, на экза^мене</td><td>на факульте^те, на ка^федре, на ку^рсе</td><td>в университе^те, в библиоте^ке, в шко^ле</td></tr></table></div>
+  <p class="ex">— На како^м ку^рсе вы у^читесь? — На тре^тьем.</p>`},
+ {t:"Studying: учиться, изучать, учить, заниматься", pg:"pp. 160–161", h:`
+  <div class="tbl"><table><tr><th>English idea</th><th>Russian verb</th><th>What it takes</th></tr>
+  <tr><td class="lbl">go to school; do well or poorly in school</td><td>учи^ться</td><td>где? в университе^те · как? хорошо^</td></tr>
+  <tr><td class="lbl">take a subject</td><td>изуча^ть, учи^ть</td><td>a subject in the accusative: исто^рию, ру^сский язы^к</td></tr>
+  <tr><td class="lbl">do homework</td><td>занима^ться, де^лать уро^ки</td><td>no object</td></tr></table></div>
+  <div class="note-box">Never use <b>учиться</b> or <b>заниматься</b> with a direct object. <b>изучать</b> must have one.</div>`},
+ {t:"Accusative case", pg:"pp. 162–164", h:`
+  <p>The direct object goes in the accusative. Only <b>feminine</b> forms change. Masculine inanimate, neuter and plural look like the nominative.</p>
+  <div class="tbl"><table><tr><th></th><th>Masc. / neut. / plural</th><th>Feminine</th></tr>
+  <tr><td class="lbl">nouns</td><td>журна^л, окно^, газе^ты</td><td>газе^т<span class="end">у</span>, ве^рси<span class="end">ю</span>, тетра^дь (no change)</td></tr>
+  <tr><td class="lbl">adjectives</td><td>но^вый, но^вое, но^вые</td><td>но^в<span class="end">ую</span>, си^н<span class="end">юю</span>, хоро^ш<span class="end">ую</span></td></tr>
+  <tr><td class="lbl">special modifiers</td><td>мой, наш, э^тот</td><td>мо<span class="end">ю^</span>, тво<span class="end">ю^</span>, на^ш<span class="end">у</span>, ва^ш<span class="end">у</span>, э^т<span class="end">у</span>, одн<span class="end">у^</span></td></tr></table></div>
+  <p class="ex">Я чита^ю интере^сную статью^. · Мы изуча^ем ру^сский язы^к.</p>`},
+ {t:"To like: любить", pg:"p. 165", h:`
+  <div class="tbl"><table><tr><th>я</th><th>ты</th><th>он/она</th><th>мы</th><th>вы</th><th>они</th></tr>
+  <tr><td>лю<span class="end">бл</span>ю^</td><td>лю^бишь</td><td>лю^бит</td><td>лю^бим</td><td>лю^бите</td><td>лю^бят</td></tr></table></div>
+  <p>An и-verb with an extra <b>л</b> in the я form and shifting stress. Takes an accusative object or an infinitive: <span class="ex">Я люблю^ му^зыку. · Я люблю^ чита^ть.</span></p>`},
+ {t:"Prepositional of question words and pronouns", pg:"p. 167", h:`
+  <div class="tbl"><table><tr><th>кто</th><th>что</th><th>я</th><th>ты</th><th>он / оно</th><th>она</th><th>мы</th><th>вы</th><th>они</th></tr>
+  <tr><td>о ком</td><td>о чём</td><td>обо мне^</td><td>о тебе^</td><td>о нём</td><td>о ней</td><td>о нас</td><td>о вас</td><td>о них</td></tr></table></div>
+  <p class="ex">— О ком вы говори^те? — О нём. · — О чём э^та статья^? — Об образова^нии.</p>`},
+ {t:"Why and because", pg:"p. 168", h:`
+  <p class="ex">— Почему^ вы изуча^ете ру^сский язы^к? — Потому^ что я люблю^ ру^сскую литерату^ру.</p>
+  <p>Expand sentences with <b>что</b> (that), <b>потому что</b> (because), <b>где</b> and <b>как</b>: <span class="ex">Я ду^маю, что э^то интере^сно.</span> Always put a comma before them.</p>`},
+ {t:"Also: тоже vs также", pg:"p. 171", h:`
+  <p><b>то^же</b> means the same thing is true of a <b>new subject</b>. It comes after that subject: <span class="ex">А^нна говори^т по-ру^сски. Ви^ктор то^же говори^т по-ру^сски.</span></p>
+  <p><b>та^кже</b> adds <b>something new</b> about the same subject: <span class="ex">А^нна говори^т по-ру^сски. Она^ та^кже говори^т по-испа^нски.</span></p>`}
+];
+
+CHAPTERS[3] = {no:3, title:"Каки^е языки^ вы зна^ете?", en:"What languages do you know? Languages, nationalities, verbs and the prepositional case.", pages:"pages 95–141", decks:DECKS, gram:GRAM,
+  quizzes: QUIZZES.map(q => q.id==="mixed" ? Object.assign({}, q, {mix:["vocab","conj","past","nat","lang","prep","conjn","vocab","prep2","conj"]}) : q)};
+let ch = 3; try { const c = +localStorage.getItem("tetrad-ch"); if (CHAPTERS[c]) ch = c; } catch(e){}
+const C = () => CHAPTERS[ch];
+const ALLQ = () => [2,3,4].flatMap(n => CHAPTERS[n].quizzes);
+function setChapter(n){
+  if (!CHAPTERS[n]) return; ch = n; try { localStorage.setItem("tetrad-ch", String(n)); } catch(e){}
+  quiz = null; cardState.deck = C().decks[0].id; cardState.order = []; cardState._init = false; render();
+}
+function renderHeader(){
+  const c = C();
+  $("#ch-eyebrow").textContent = "Голоса · Book One · " + c.pages;
+  $("#ch-title").textContent = "Урок " + c.no + " · " + S(c.title);
+  $("#ch-sub").textContent = c.en;
+  document.querySelectorAll(".lesson").forEach(b => b.setAttribute("aria-current", +b.dataset.ch===ch ? "true" : "false"));
+  document.title = "Тетрадь: Урок " + c.no;
+}
+
+/* ---------- views ---------- */
+let route = "home", cardState = {deck:C().decks[0].id, dir:"ru", onlyNew:false, order:[], i:0, flipped:false}, quiz=null;
+function go(r){ if (location.hash !== "#"+r) location.hash = r; else render(); }
+window.addEventListener("hashchange", render);
+
+function render(){
+  renderHeader();
+  const h = location.hash.replace("#","");
+  route = ["home","cards","grammar","tests"].includes(h) ? h : "home";
+  document.querySelectorAll("nav.tabs a").forEach(a => a.setAttribute("aria-current", a.dataset.route===route ? "page" : "false"));
+  const v = $("#view");
+  if (route==="home") v.innerHTML = homeHTML();
+  if (route==="cards") v.innerHTML = cardsHTML();
+  if (route==="grammar") v.innerHTML = grammarHTML();
+  if (route==="tests") v.innerHTML = quiz ? quizHTML() : testsHTML();
+}
+
+function homeHTML(){
+  const decks = C().decks.map(d => ({d, ...deckPct(d)}));
+  const totalK = decks.reduce((s,x)=>s+x.k,0), totalN = decks.reduce((s,x)=>s+x.n,0);
+  const tried = C().quizzes.filter(q=>state.quizzes[q.id]);
+  const avg = tried.length ? Math.round(tried.reduce((s,q)=>s+state.quizzes[q.id].best,0)/tried.length) : null;
+  const weakDeck = decks.slice().sort((a,b)=>a.p-b.p)[0];
+  const weakQuiz = C().quizzes.filter(q=>!q.test).map(q=>({q, b: state.quizzes[q.id]?.best ?? -1})).sort((a,b)=>a.b-b.b)[0];
+  const last14 = []; for (let i=13;i>=0;i--){ const d=new Date(); d.setDate(d.getDate()-i); const k=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); last14.push(state.days.includes(k)); }
+  const studied = last14.filter(Boolean).length;
+  return `
+  <div class="next">
+    <div class="panel"><span class="eyebrow">Next flashcards</span><h3>${S(weakDeck.d.ru)} · ${esc(weakDeck.d.en)}</h3>
+      <p>${weakDeck.k} of ${weakDeck.n} words marked as known. This is your least-learned deck.</p>
+      <button class="btn" data-act="open-deck" data-deck="${weakDeck.d.id}">Study these cards</button></div>
+    <div class="panel"><span class="eyebrow">Next quiz</span><h3>${S(weakQuiz.q.ru)}</h3>
+      <p>${weakQuiz.b<0 ? "You haven't tried this one yet." : `Your best so far is ${weakQuiz.b}%, your lowest of all the quizzes.`} ${esc(weakQuiz.q.d)}</p>
+      <button class="btn" data-act="start" data-quiz="${weakQuiz.q.id}">Start: 10 questions</button></div>
+  </div>
+  <div class="stats">
+    <div class="panel stat"><div class="v tabnum">${totalK}<span class="muted" style="font-size:18px"> / ${totalN}</span></div><div class="l">words marked as known</div></div>
+    <div class="panel stat"><div class="v tabnum">${avg===null?"—":avg+"%"}</div><div class="l">average best quiz score${tried.length?` (${tried.length} of ${C().quizzes.length} tried)`:""}</div></div>
+    <div class="panel stat"><div class="v tabnum">${studied}<span class="muted" style="font-size:18px"> of 14 days</span></div><div class="l">studied in the last two weeks</div><div class="days">${last14.map(x=>`<i class="${x?"on":""}"></i>`).join("")}</div></div>
+  </div>
+  <div class="section-h"><h2>Прогресс по темам</h2><span class="muted">Progress by topic</span></div>
+  <div class="progress-cols">
+    <div class="panel plist"><div class="plist-h"><h3>Flashcard decks</h3><span class="muted" style="font-size:13px">known</span></div>
+      ${decks.map(x=>`<button class="prow" data-act="open-deck" data-deck="${x.d.id}"><span class="n"><b>${S(x.d.ru)}</b><small>${esc(x.d.en)} · ${x.n} words</small></span><span class="bar ${x.p===100?"good":""}"><span style="width:${x.p}%"></span></span><span class="pct">${x.p}%</span></button>`).join("")}
+    </div>
+    <div class="panel plist"><div class="plist-h"><h3>Quizzes</h3><span class="muted" style="font-size:13px">best score</span></div>
+      ${C().quizzes.map(q=>{const r=state.quizzes[q.id]; const b=r?r.best:0; return `<button class="prow" data-act="start" data-quiz="${q.id}"><span class="n"><b>${S(q.ru)}</b><small>${esc(q.en)}${r?` · ${r.n} attempt${r.n===1?"":"s"}, last ${r.last}%`:" · not tried yet"}</small></span><span class="bar ${b>=90?"good":""}"><span style="width:${b}%"></span></span><span class="pct">${r?b+"%":"—"}</span></button>`;}).join("")}
+    </div>
+  </div>`;
+}
+
+function deckOrder(){
+  const d = C().decks.find(x=>x.id===cardState.deck);
+  const known = new Set(state.known[d.id]||[]);
+  let idx = d.items.map((_,i)=>i);
+  if (cardState.onlyNew) idx = idx.filter(i=>!known.has(P(d.items[i][0])));
+  cardState.order = shuffle(idx); cardState.i = 0; cardState.flipped=false;
+}
+function cardsHTML(){
+  const d = C().decks.find(x=>x.id===cardState.deck);
+  if (!cardState.order.length && !cardState._init){ cardState._init=true; deckOrder(); }
+  const known = new Set(state.known[d.id]||[]);
+  const chips = C().decks.map(x=>{const p=deckPct(x); return `<button class="chip" aria-pressed="${x.id===d.id}" data-act="deck" data-deck="${x.id}">${esc(x.en)}<span class="c">${p.k}/${p.n}</span></button>`;}).join("");
+  const tools = `<div class="cardtools">
+    <div class="toggle" role="group" aria-label="Card direction"><button aria-pressed="${cardState.dir==="ru"}" data-act="dir" data-dir="ru">Русский → English</button><button aria-pressed="${cardState.dir==="en"}" data-act="dir" data-dir="en">English → Русский</button></div>
+    <div class="toggle" role="group" aria-label="Which cards"><button aria-pressed="${!cardState.onlyNew}" data-act="only" data-v="0">All cards</button><button aria-pressed="${cardState.onlyNew}" data-act="only" data-v="1">Not known yet</button></div>
+  </div>`;
+  if (cardState.i >= cardState.order.length){
+    const p = deckPct(d);
+    return `<div class="deckbar">${chips}</div>${tools}<div class="panel empty"><span class="hand">${p.p===100?"Молодец!":"Ко^нчено!"}</span>
+      ${cardState.order.length? `You went through ${cardState.order.length} cards.`:"Every card in this deck is marked as known."} ${p.k} of ${p.n} in this deck are known.
+      <div class="flash-actions"><button class="btn" data-act="restart">Go again</button>${p.k?`<button class="btn ghost" data-act="reset-deck">Reset this deck</button>`:""}</div></div>`;
+  }
+  const it = d.items[cardState.order[cardState.i]];
+  const isKnown = known.has(P(it[0]));
+  const ruFace = `<div class="word">${S(it[0])}</div>`;
+  const enFace = `<div class="en-word">${esc(it[1])}</div>`;
+  const note = it[2] ? `<div class="note">${S(it[2])}</div>` : "";
+  const front = cardState.dir==="ru" ? ruFace : enFace;
+  const back = cardState.dir==="ru" ? enFace + `<div class="note" style="font-family:var(--f-display)">${S(it[0])}</div>` + note : ruFace + note;
+  return `<div class="deckbar">${chips}</div>${tools}
+   <div class="flash ${cardState.flipped?"flipped":""}" id="flash">
+     <div class="flash-inner" data-act="flip" role="button" tabindex="0" aria-label="Flip card">
+       <div class="face front">${isKnown?'<span class="known-tag">зна^ю</span>'.replace("^","́"):""}${front}<span class="hint">Tap to flip</span></div>
+       <div class="face back">${back}</div>
+     </div>
+   </div>
+   <div class="flash-actions"><button class="btn again" data-act="again">Ещё раз · again</button><button class="btn know" data-act="know">Зна&#769;ю · I know it</button></div>
+   <div class="counter tabnum">Card ${cardState.i+1} of ${cardState.order.length}</div>
+   <div class="kbd">Space flips · → I know it · ← again</div>`;
+}
+
+function grammarHTML(){
+  return `<div class="section-h" style="margin-top:0"><h2>Грамма^тика</h2><span class="muted">${C().gram.length} topics from the chapter. Red letters are the endings to learn.</span></div>`.replace(/\^/g,"́") +
+   `<div class="gram">${C().gram.map((g,i)=>`<details class="g"${i===0?" open":""}><summary><span class="no">${i+1}</span><h3>${esc(g.t)}</h3><span class="pg">${g.pg}</span></summary><div class="gbody">${S(g.h)}</div></details>`).join("")}</div>`;
+}
+
+function testsHTML(){
+  return `<div class="section-h" style="margin-top:0"><h2>Те^сты</h2><span class="muted">Ten questions each. Your best score is kept.</span></div>`.replace(/\^/g,"́") +
+   `<div class="qgrid">${C().quizzes.map(q=>{const r=state.quizzes[q.id]; const g=r?grade(r.best):null;
+     return `<button class="qcard ${q.test?"test":""}" data-act="start" data-quiz="${q.id}"><span class="ru">${S(q.ru)}</span><span class="en">${esc(q.en)}</span><p>${esc(q.d)}</p>
+     <span class="best"><span>${r?`Best ${r.best}% · ${r.n} tr${r.n===1?"y":"ies"}`:"Not tried yet"}</span>${g?`<span class="mark">${g[0]}</span>`:""}</span></button>`;}).join("")}</div>`;
+}
+
+function startQuiz(id){
+  const def = ALLQ().find(q=>q.id===id); const gens = def && def.mix ? def.mix : Array(10).fill(id);
+  const qs=[]; const seen=new Set();
+  for (const g of shuffle(gens)){ let q, tries=0; do { q = GEN[g](); tries++; } while (seen.has(q.q) && tries<12); seen.add(q.q); qs.push(q); }
+  quiz = {id, qs, i:0, answers:[], picked:null, pick2:{a:null,n:null}};
+  go("tests"); render();
+}
+function quizHTML(){
+  const Q = ALLQ().find(q=>q.id===quiz.id);
+  const bar = quiz.qs.map((_,i)=>`<i class="${i<quiz.answers.length?(quiz.answers[i]?"ok":"no"):i===quiz.i?"cur":""}"></i>`).join("");
+  if (quiz.i >= quiz.qs.length){
+    const right = quiz.answers.filter(Boolean).length, pct = Math.round(100*right/quiz.qs.length); const [g,w] = grade(pct);
+    const wrong = quiz.qs.filter((_,i)=>!quiz.answers[i]);
+    return `<div class="quiz"><div class="qprog">${bar}</div><div class="panel result">
+      <div class="grade">${g}</div><div class="gword">${S(w)}</div>
+      <div class="score tabnum">${right} of ${quiz.qs.length} right · ${pct}%</div>
+      ${wrong.length?`<div class="review"><span class="eyebrow">Worth another look</span>${wrong.map(q=>`<div><span class="r-q">${q.q.replace(/<span class="blank">___<\/span>/,"___")}</span> → <span class="r-a">${q.ru?S(q.a):esc(q.a)}</span></div>`).join("")}</div>`:""}
+      <div class="actions"><button class="btn" data-act="start" data-quiz="${quiz.id}">Try again</button><button class="btn ghost" data-act="quit">All quizzes</button></div></div></div>`;
+  }
+  const q = quiz.qs[quiz.i]; const answered = quiz.picked!==null;
+  if (q.two) return quizHead(Q, bar) + twoHTML(q, answered) + `<div class="kbd">Pick one adjective and one noun, then check</div></div>`;
+  const ok = answered && P(quiz.picked)===P(q.a);
+  const optsH = q.opts.map((o,i)=>{ let cls=""; if(answered){ if(P(o)===P(q.a)) cls="right"; else if(o===quiz.picked) cls="wrong"; }
+    return `<button class="opt ${cls}" data-act="answer" data-i="${i}" ${answered?"disabled":""}><span class="k">${i+1}</span><span>${q.ru?S(o):esc(o)}</span></button>`; }).join("");
+  return quizHead(Q, bar) + `
+    <div class="panel qbox"><div class="prompt-k">${q.k}</div><div class="prompt">${q.q}</div>
+      <div class="opts">${optsH}</div>
+      ${answered?`<div class="feedback ${ok?"ok":"no"}"><b class="h">${ok?"Ве^рно!".replace("^","\u0301"):"Не совсе^м.".replace("^","\u0301")}</b>${ok?"":`The answer is <b>${q.ru?S(q.a):esc(q.a)}</b>. `}${q.ex||""}</div>
+      <div class="qnext"><button class="btn" data-act="next" id="nextbtn">${quiz.i===quiz.qs.length-1?"See my grade":"Next question"}</button></div>`:""}
+    </div>
+    <div class="kbd">Keys 1–4 answer · Enter goes on</div></div>`;
+}
+function quizHead(Q, bar){
+  return `<div class="quiz">
+    <div class="qhead"><div><div class="eyebrow">${esc(Q.en)}</div><h2 style="font-size:22px">${S(Q.ru)}</h2></div><button class="btn ghost small" data-act="quit">Leave quiz</button></div>
+    <div class="qprog">${bar}</div>`;
+}
+function twoHTML(q, answered){
+  const p = quiz.pick2;
+  const okA = p.a===q.adjA, okN = p.n===q.nounA, ok = okA && okN;
+  const row = (label, opts, which, sel, right) => `<div class="two-row"><span class="eyebrow">${label}</span><div class="two-opts">${opts.map(o=>{
+      let cls = sel===o ? "sel" : ""; if (answered){ cls = o===right ? "right" : (sel===o ? "wrong" : ""); }
+      return `<button class="opt two ${cls}" data-act="pick2" data-w="${which}" data-v="${esc(o)}" ${answered?"disabled":""}>${esc(o)}</button>`; }).join("")}</div></div>`;
+  const slot = (v, good) => `<span class="slot ${answered?(good?"good":"bad"):""}">${v?esc(v):"___"}</span>`;
+  return `<div class="panel qbox"><div class="prompt-k">${q.k}</div><div class="prompt">${q.q}</div>
+    <div class="built">${esc(q.prep)} ${slot(p.a, okA)} ${slot(p.n, okN)}</div>
+    ${row("1 · Adjective", q.adjOpts, "a", p.a, q.adjA)}${row("2 · Noun", q.nounOpts, "n", p.n, q.nounA)}
+    ${answered ? `<div class="feedback ${ok?"ok":"no"}"><b class="h">${ok?"Ве\u0301рно!":"Не совсе\u0301м."}</b>${ok?"":`The answer is <b>${esc(q.a)}</b>${!okA&&okN?" (the noun was right)":okA&&!okN?" (the adjective was right)":""}. `}${q.ex}</div>
+      <div class="qnext"><button class="btn" data-act="next" id="nextbtn">${quiz.i===quiz.qs.length-1?"See my grade":"Next question"}</button></div>`
+      : `<div class="qnext"><button class="btn" data-act="check2" ${p.a&&p.n?"":"disabled"}>Check</button></div>`}
+  </div>`;
+}
+function answer(i){
+  if (!quiz || quiz.picked!==null) return;
+  const q = quiz.qs[quiz.i]; quiz.picked = q.opts[i]; quiz.answers.push(P(quiz.picked)===P(q.a));
+  render(); const n=$("#nextbtn"); if(n) n.focus({preventScroll:true});
+}
+function nextQ(){
+  if (!quiz || quiz.picked===null) return;
+  quiz.i++; quiz.picked=null; quiz.pick2={a:null,n:null};
+  if (quiz.i>=quiz.qs.length){
+    const pct = Math.round(100*quiz.answers.filter(Boolean).length/quiz.qs.length);
+    const r = state.quizzes[quiz.id] || {best:0,n:0};
+    state.quizzes[quiz.id] = {best:Math.max(r.best,pct), last:pct, at:Date.now(), n:(r.n||0)+1};
+    markDay(); save();
+  }
+  render();
+}
+function cardMark(know){
+  const d = C().decks.find(x=>x.id===cardState.deck); const it = d.items[cardState.order[cardState.i]];
+  const set = new Set(state.known[d.id]||[]); const key=P(it[0]);
+  if (know) set.add(key); else set.delete(key);
+  state.known[d.id] = [...set]; markDay(); save();
+  if (!know) cardState.order.push(cardState.order[cardState.i]);
+  cardState.i++; cardState.flipped=false; render();
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-act]"); if (!t) return;
+  const a = t.dataset.act;
+  if (a==="chapter"){ setChapter(+t.dataset.ch); return; }
+  if (a==="open-deck"){ cardState.deck=t.dataset.deck; cardState.onlyNew = deckPct(C().decks.find(x=>x.id===t.dataset.deck)).k>0; deckOrder(); cardState._init=true; go("cards"); }
+  else if (a==="deck"){ cardState.deck=t.dataset.deck; deckOrder(); render(); }
+  else if (a==="dir"){ cardState.dir=t.dataset.dir; cardState.flipped=false; render(); }
+  else if (a==="only"){ cardState.onlyNew = t.dataset.v==="1"; deckOrder(); render(); }
+  else if (a==="flip"){ cardState.flipped=!cardState.flipped; $("#flash").classList.toggle("flipped", cardState.flipped); }
+  else if (a==="know") cardMark(true);
+  else if (a==="again") cardMark(false);
+  else if (a==="restart"){ deckOrder(); render(); }
+  else if (a==="reset-deck"){ state.known[cardState.deck]=[]; save(); cardState.onlyNew=false; deckOrder(); render(); }
+  else if (a==="start") startQuiz(t.dataset.quiz);
+  else if (a==="answer") answer(+t.dataset.i);
+  else if (a==="next") nextQ();
+  else if (a==="pick2"){ if (quiz && quiz.picked===null){ quiz.pick2[t.dataset.w]=t.dataset.v; render(); } }
+  else if (a==="check2"){ if (quiz && quiz.picked===null && quiz.pick2.a && quiz.pick2.n){ const q=quiz.qs[quiz.i]; quiz.picked=quiz.prep2Str=`${q.prep} ${quiz.pick2.a} ${quiz.pick2.n}`; quiz.answers.push(quiz.picked===q.a); render(); const n=$("#nextbtn"); if(n) n.focus({preventScroll:true}); } }
+  else if (a==="quit"){ quiz=null; render(); }
+});
+document.addEventListener("keydown", e => {
+  if (e.target.closest && e.target.closest("input,textarea,select")) return;
+  if (route==="cards" && $("#flash")){
+    if (e.key===" " || (e.key==="Enter" && !e.target.closest("button"))){ e.preventDefault(); cardState.flipped=!cardState.flipped; $("#flash").classList.toggle("flipped", cardState.flipped); }
+    else if (e.key==="ArrowRight") cardMark(true);
+    else if (e.key==="ArrowLeft") cardMark(false);
+  }
+  if (route==="tests" && quiz){
+    if (/^[1-4]$/.test(e.key) && quiz.picked===null && !quiz.qs[quiz.i].two){ const i=+e.key-1; if (i<quiz.qs[quiz.i]?.opts.length) answer(i); }
+    else if (e.key==="Enter" && quiz.picked!==null && !e.target.closest("button")){ e.preventDefault(); nextQ(); }
+  }
+});
+render();
+</script>
+
+</body>
+</html>
